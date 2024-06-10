@@ -19,3 +19,9 @@ mesh = SubResource("CapsuleMesh_gx5ot")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.944596, -0.030352, 0.32683, -0.0552277, 0.966823, 0.249404, -0.323557, -0.253636, 0.911581, 3.58545, 3.32813, 7.81759)
+
+[node name="WallJumpTimer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
+[connection signal="timeout" from="WallJumpTimer" to="." method="_on_wall_jump_timer_timeout"]
