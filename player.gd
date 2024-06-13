@@ -1,5 +1,6 @@
 extends CharacterBody3D
-const SPEED = 5.0
+const ACCELERATION = 400
+const FRICTION = 0.85
 const JUMP_VELOCITY = 4
 const JUMP_INAIR = 12
 const MAX_WALL_SLIDE_SPEED = -120
@@ -7,15 +8,14 @@ var jump_countair = 0
 var max_jumpsair = 3
 var jump_count = 0
 var max_jumps = 1
-var dowalljump = false
 var jumpsmade = 0
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
+
 func _physics_process(delta):
-	var directionwalljump = Input.get_axis("ui_left" , "ui_right")
 	# Add the gravity.
-	if is_on_wall_only(): velocity.y = MAX_WALL_SLIDE_SPEED * delta
+	if is_on_wall(): velocity.y = MAX_WALL_SLIDE_SPEED * delta
 	
 	elif not is_on_floor():
 		velocity.y -= gravity * delta
@@ -23,6 +23,7 @@ func _physics_process(delta):
 	if is_on_floor():
 		jump_count = 0
 		jump_countair = 0
+		
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and jump_count < max_jumps:
 		velocity.y = JUMP_VELOCITY
@@ -35,26 +36,20 @@ func _physics_process(delta):
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	
-	if Input.is_action_just_pressed("ui_accept"):
-		if is_on_wall_only():
-			velocity.y = JUMP_VELOCITY
-			velocity.x = -directionwalljump * SPEED
-			dowalljump = true
-			$WallJumpTimer.start()
-		elif is_on_floor() || jumpsmade < 2:
-			velocity.y = JUMP_VELOCITY
-			jumpsmade += 1
 			
-	if direction  && not dowalljump:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
-	elif not dowalljump:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
-
+	if direction:
+		velocity.x = direction.x * ACCELERATION * delta
+		velocity.z = direction.z * ACCELERATION * delta
+	
 	move_and_slide()
+	velocity.x *= FRICTION
+	velocity.z *= FRICTION
+	
+	
+func check_jump():
+	if Input.is_action_just_pressed("ui_accept") and is_on_wall_only():
+		velocity = get_wall_normal() * JUMP_INAIR
+		velocity.y += JUMP_VELOCITY * 0.7
+	
 
-
-func _on_wall_jump_timer_timeout():
-	dowalljump = false
+	check_jump()
