@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqbd86w5ikoq1"]
+
+[ext_resource type="Script" path="res://scenes/main_menu.gd" id="1_ntna2"]
+
+[sub_resource type="Theme" id="Theme_8hp5s"]
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_ntna2")
+
+[node name="StartButton" type="Button" parent="."]
+offset_left = 465.0
+offset_top = 283.0
+offset_right = 728.0
+offset_bottom = 346.0
+theme = SubResource("Theme_8hp5s")
+theme_override_font_sizes/font_size = 50
+text = "Start"
+
+[node name="Fullscreen" type="Button" parent="."]
+offset_left = 462.0
+offset_top = 372.0
+offset_right = 725.0
+offset_bottom = 449.0
+theme = SubResource("Theme_8hp5s")
+theme_override_font_sizes/font_size = 50
+text = "Fullscreen
+"
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Fullscreen" to="." method="_on_fullscreen_pressed"]

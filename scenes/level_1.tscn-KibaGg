@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://bvta5tyr2dwwr"]
+
+[ext_resource type="MeshLibrary" uid="uid://co6li3su7tr7s" path="res://ASSETS/assets.tres" id="1_wxkqt"]
+[ext_resource type="Script" path="res://player.gd" id="2_i7b5u"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5lwis"]
+
+[sub_resource type="Sky" id="Sky_s6mbr"]
+sky_material = SubResource("ProceduralSkyMaterial_5lwis")
+
+[sub_resource type="Environment" id="Environment_hrb0b"]
+background_mode = 2
+sky = SubResource("Sky_s6mbr")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_im2il"]
+radius = 0.299817
+height = 1.05576
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_gx5ot"]
+
+[node name="Level_1" type="Node3D"]
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("1_wxkqt")
+data = {
+"cells": PackedInt32Array(589809, 0, 33, 589810, 0, 33, 589811, 0, 33, 589812, 0, 33, 589813, 0, 33, 589814, 0, 33, 589815, 0, 33, 589816, 0, 33, 589817, 0, 33, 589818, 0, 33, 589819, 0, 33, 589820, 0, 33, 589821, 0, 33, 589822, 0, 33, 589823, 0, 33, 524288, 0, 33, 524289, 0, 33, 524290, 0, 33, 524291, 0, 33, 589827, 0, 117, 524294, 0, 33, 524293, 0, 33, 524292, 0, 33, 524296, 0, 33, 524295, 0, 33, 655363, 0, 109)
+}
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_hrb0b")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 19, 0)
+script = ExtResource("2_i7b5u")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+transform = Transform3D(1, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, -3.48786e-16, -3.48787e-16, 3.48786e-16, 1, 0, 1.30962, 0)
+shape = SubResource("CapsuleShape3D_im2il")
+
+[node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(0.996152, 0.0363281, 0.0797591, -0.0552277, 0.966823, 0.249404, -0.0680526, -0.252849, 0.965109, 0.585449, 3.32813, 9.81759)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
+transform = Transform3D(0.6, -1.74393e-16, 2.09272e-16, 2.09272e-16, 0.5, -2.09272e-16, -2.09272e-16, 1.74393e-16, 0.6, -9.92617e-24, 1.28461, -1.90252e-23)
+mesh = SubResource("CapsuleMesh_gx5ot")
