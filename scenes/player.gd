@@ -1,5 +1,5 @@
 extends CharacterBody3D
-const ACCELERATION = 400
+const ACCELERATION = 300
 const FRICTION = 0.85
 const JUMP_VELOCITY = 4
 const JUMP_INAIR = 6
@@ -15,9 +15,10 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _physics_process(delta):
 	# Add the gravity.
-	if is_on_wall(): velocity.y = MAX_WALL_SLIDE_SPEED * delta
-	
-	elif not is_on_floor():
+	#if is_on_wall(): velocity.y = MAX_WALL_SLIDE_SPEED * delta
+
+
+	if not is_on_floor():
 		velocity.y -= gravity * delta
 
 	if is_on_floor():

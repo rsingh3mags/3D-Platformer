@@ -11,13 +11,17 @@ config_version=5
 [application]
 
 config/name="3D-Platformer"
-run/main_scene="res://scenes/level_1.tscn"
+run/main_scene="res://scenes/main_menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 Global="*res://global.gd"
+
+[display]
+
+window/stretch/mode="viewport"
 
 [filesystem]
 
