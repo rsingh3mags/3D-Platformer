@@ -30,7 +30,7 @@ script = ExtResource("1_6gc5d")
 mesh_library = ExtResource("1_wxkqt")
 cell_size = Vector3(2, 1, 2)
 data = {
-"cells": PackedInt32Array(589809, 0, 33, 589810, 0, 33, 589811, 0, 33, 589812, 0, 33, 589813, 0, 33, 589814, 0, 33, 589815, 0, 33, 589816, 0, 33, 589817, 0, 33, 589818, 0, 33, 589819, 0, 33, 589820, 0, 33, 589821, 0, 33, 589822, 0, 33, 589823, 0, 33, 524288, 0, 33, 524289, 0, 33, 524290, 0, 33, 524291, 0, 33, 524294, 0, 33, 524293, 0, 33, 524292, 0, 33, 524296, 0, 33, 524295, 0, 33, 589824, 0, 97)
+"cells": PackedInt32Array(589809, 0, 33, 589810, 0, 33, 589811, 0, 33, 589812, 0, 33, 589813, 0, 33, 589814, 0, 33, 589815, 0, 33, 589816, 0, 33, 589817, 0, 33, 589818, 0, 33, 589819, 0, 33, 589820, 0, 33, 589821, 0, 33, 589822, 0, 33, 589823, 0, 33, 524288, 0, 33, 524289, 0, 33, 524290, 0, 33, 524291, 0, 33, 524294, 0, 33, 524293, 0, 33, 524292, 0, 33, 524296, 0, 33, 524295, 0, 33, 524297, 0, 33, 524298, 0, 33, 524299, 0, 33, 524300, 0, 33, 524301, 0, 33, 524302, 0, 33, 524303, 0, 33, 524304, 0, 33, 524306, 0, 33, 524305, 0, 33, 524307, 0, 33, 524308, 0, 33, 524309, 0, 33, 524310, 0, 33, 524311, 0, 33, 524312, 0, 33, 524313, 0, 33, 524314, 0, 33, 524316, 0, 33, 524315, 0, 33, 524317, 0, 33, 524318, 0, 33, 524324, 0, 33, 524323, 0, 33, 524322, 0, 33, 524321, 0, 33, 524320, 0, 33, 524319, 0, 33, 589859, 0, 97)
 }
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -62,7 +62,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 9.4, 1)
 [node name="Area3D" type="Area3D" parent="door"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="door/Area3D"]
-transform = Transform3D(1.2, 0, 0, 0, 0.8, 0, 0, 0, 1.2, 2.08165e-12, 0.5, 2.08165e-12)
+transform = Transform3D(1.2, 0, 0, 0, 0.8, 0, 0, 0, 1.2, 70, 0.5, 0)
 shape = SubResource("CapsuleShape3D_6b2ow")
 
 [node name="Coins" type="Node3D" parent="."]
@@ -72,9 +72,27 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 11, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, 0)
 
 [node name="Coins2" parent="Coins" instance=ExtResource("4_m5e3k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 6, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 2, 0)
 
 [node name="Coins3" parent="Coins" instance=ExtResource("4_m5e3k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 4, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1, 0)
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="CurrentLevel" type="Label" parent="HUD"]
+offset_left = 19.0
+offset_top = 9.0
+offset_right = 107.0
+offset_bottom = 48.0
+text = "Level 1
+"
+
+[node name="CoinsLabel" type="Label" parent="HUD"]
+offset_left = 89.0
+offset_top = 10.0
+offset_right = 136.0
+offset_bottom = 33.0
+text = "Coins: 0
+"
 
 [connection signal="body_entered" from="door/Area3D" to="." method="_on_area_3d_body_entered"]
