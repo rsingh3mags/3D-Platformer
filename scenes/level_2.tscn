@@ -52,8 +52,10 @@ text = "Coins: 0
 metadata/_edit_use_anchors_ = true
 
 [node name="door" parent="." instance=ExtResource("5_kd4ek")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.2302, 9.02662, 0)
 level = "res://scenes/level_3.tscn"
 
 [node name="Player" parent="." instance=ExtResource("5_11bml")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.582471, 9.3655, 1.04398)
 
 [connection signal="player_entered" from="door" to="." method="_on_door_player_entered"]
