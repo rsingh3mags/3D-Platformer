@@ -55,5 +55,5 @@ func check_jump():
 	if Input.is_action_just_pressed("ui_accept") and is_on_wall_only():
 		velocity = get_wall_normal() * JUMPVELOCITY_INAIR
 		velocity.y += JUMP_VELOCITY * 0.7
-
+	#check Jump
 	check_jump()

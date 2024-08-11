@@ -1,69 +1,22 @@
-[gd_scene load_steps=11 format=3 uid="uid://ba3exb5npryrd"]
+[gd_scene load_steps=6 format=3 uid="uid://ba3exb5npryrd"]
 
-[ext_resource type="Script" path="res://scenes/level_1.gd" id="1_6gc5d"]
+[ext_resource type="Script" path="res://scenes/level.gd" id="1_6gc5d"]
 [ext_resource type="MeshLibrary" uid="uid://co6li3su7tr7s" path="res://ASSETS/assets.tres" id="1_wxkqt"]
-[ext_resource type="Script" path="res://scenes/player.gd" id="2_i7b5u"]
 [ext_resource type="PackedScene" uid="uid://dhkgd1hlon6ca" path="res://scenes/coins.tscn" id="4_m5e3k"]
+[ext_resource type="PackedScene" uid="uid://b5f06fuwjpbb0" path="res://scenes/player.tscn" id="5_15k4h"]
+[ext_resource type="PackedScene" uid="uid://dehdj3ju6skrm" path="res://scenes/door.tscn" id="5_qeub2"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5lwis"]
-
-[sub_resource type="Sky" id="Sky_s6mbr"]
-sky_material = SubResource("ProceduralSkyMaterial_5lwis")
-
-[sub_resource type="Environment" id="Environment_hrb0b"]
-background_mode = 2
-sky = SubResource("Sky_s6mbr")
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_im2il"]
-radius = 0.299817
-height = 1.05576
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_gx5ot"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6b2ow"]
-
-[node name="Level_1" type="Node3D"]
+[node name="level_1" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.4, 0.3, -6.1)
 script = ExtResource("1_6gc5d")
+level_num = 1
 
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource("1_wxkqt")
 cell_size = Vector3(2, 1, 2)
 data = {
-"cells": PackedInt32Array(589809, 0, 33, 589810, 0, 33, 589811, 0, 33, 589812, 0, 33, 589813, 0, 33, 589814, 0, 33, 589815, 0, 33, 589816, 0, 33, 589817, 0, 33, 589818, 0, 33, 589819, 0, 33, 589820, 0, 33, 589821, 0, 33, 589822, 0, 33, 589823, 0, 33, 524288, 0, 33, 524289, 0, 33, 524290, 0, 33, 524291, 0, 33, 524294, 0, 33, 524293, 0, 33, 524292, 0, 33, 524296, 0, 33, 524295, 0, 33, 524297, 0, 33, 524298, 0, 33, 524299, 0, 33, 524300, 0, 33, 524301, 0, 33, 524302, 0, 33, 524303, 0, 33, 524304, 0, 33, 524306, 0, 33, 524305, 0, 33, 524307, 0, 33, 524308, 0, 33, 524309, 0, 33, 524310, 0, 33, 524311, 0, 33, 524312, 0, 33, 524313, 0, 33, 524314, 0, 33, 524316, 0, 33, 524315, 0, 33, 524317, 0, 33, 524318, 0, 33, 524324, 0, 33, 524323, 0, 33, 524322, 0, 33, 524321, 0, 33, 524320, 0, 33, 524319, 0, 33, 589859, 0, 97)
+"cells": PackedInt32Array(589809, 0, 33, 589810, 0, 33, 589811, 0, 33, 589812, 0, 33, 589813, 0, 33, 589814, 0, 33, 589815, 0, 33, 589816, 0, 33, 589817, 0, 33, 589818, 0, 33, 589819, 0, 33, 589820, 0, 33, 589821, 0, 33, 589822, 0, 33, 589823, 0, 33, 524288, 0, 33, 524289, 0, 33, 524290, 0, 33, 524291, 0, 33, 524294, 0, 33, 524293, 0, 33, 524292, 0, 33, 524296, 0, 33, 524295, 0, 33, 524297, 0, 33, 524298, 0, 33, 524299, 0, 33, 524300, 0, 33, 524301, 0, 33, 524302, 0, 33, 524303, 0, 33, 524304, 0, 33, 524306, 0, 33, 524305, 0, 33, 524307, 0, 33, 524308, 0, 33, 524309, 0, 33, 524310, 0, 33, 524311, 0, 33, 524312, 0, 33, 524313, 0, 33, 524314, 0, 33, 524316, 0, 33, 524315, 0, 33, 524317, 0, 33, 524318, 0, 33, 524324, 0, 33, 524323, 0, 33, 524322, 0, 33, 524321, 0, 33, 524320, 0, 33, 524319, 0, 33, 589859, 0, 97, 655357, 0, 655457)
 }
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_hrb0b")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-
-[node name="Player" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 11, 1)
-axis_lock_linear_z = true
-script = ExtResource("2_i7b5u")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
-transform = Transform3D(0.5, -1.74393e-16, 1.74393e-16, 1.74393e-16, 0.5, -1.74393e-16, -1.74393e-16, 1.74393e-16, 0.5, 0, 1.30962, 0)
-shape = SubResource("CapsuleShape3D_im2il")
-
-[node name="Camera3D" type="Camera3D" parent="Player"]
-transform = Transform3D(0.996152, 0.0363282, 0.0797591, -0.0552277, 0.966823, 0.249404, -0.0680526, -0.252849, 0.965109, 1.58545, 3.32813, 6.81759)
-fov = 56.6
-near = 0.057
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
-transform = Transform3D(0.4, -8.71967e-17, 1.04636e-16, 1.39515e-16, 0.25, -1.04636e-16, -1.39515e-16, 8.71965e-17, 0.3, -9.92617e-24, 1.28461, -1.90252e-23)
-mesh = SubResource("CapsuleMesh_gx5ot")
-
-[node name="door" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 9.4, 1)
-
-[node name="Area3D" type="Area3D" parent="door"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="door/Area3D"]
-transform = Transform3D(1.2, 0, 0, 0, 0.8, 0, 0, 0, 1.2, 70, 0.5, 0)
-shape = SubResource("CapsuleShape3D_6b2ow")
 
 [node name="Coins" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 11, 1)
@@ -84,8 +37,9 @@ offset_left = 19.0
 offset_top = 9.0
 offset_right = 107.0
 offset_bottom = 48.0
-text = "Level 1
+text = "level 1
 "
+metadata/_edit_use_anchors_ = true
 
 [node name="CoinsLabel" type="Label" parent="HUD"]
 offset_left = 89.0
@@ -94,5 +48,13 @@ offset_right = 136.0
 offset_bottom = 33.0
 text = "Coins: 0
 "
+metadata/_edit_use_anchors_ = true
 
-[connection signal="body_entered" from="door/Area3D" to="." method="_on_area_3d_body_entered"]
+[node name="Player" parent="." instance=ExtResource("5_15k4h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 9, 1)
+
+[node name="door" parent="." instance=ExtResource("5_qeub2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 9, 1)
+level = "res://scenes/level_2.tscn"
+
+[connection signal="player_entered" from="door" to="." method="_on_door_player_entered"]
