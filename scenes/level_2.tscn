@@ -1,10 +1,77 @@
-[gd_scene load_steps=6 format=3 uid="uid://2rvh0f4uij5j"]
+[gd_scene load_steps=19 format=3 uid="uid://dvnkl228musk3"]
 
 [ext_resource type="MeshLibrary" uid="uid://co6li3su7tr7s" path="res://ASSETS/assets.tres" id="1_ivki1"]
 [ext_resource type="Script" path="res://scenes/level.gd" id="1_pm122"]
 [ext_resource type="PackedScene" uid="uid://b5f06fuwjpbb0" path="res://scenes/player.tscn" id="5_11bml"]
 [ext_resource type="PackedScene" uid="uid://dhkgd1hlon6ca" path="res://scenes/coins.tscn" id="5_f6g8p"]
 [ext_resource type="PackedScene" uid="uid://dehdj3ju6skrm" path="res://scenes/door.tscn" id="5_kd4ek"]
+[ext_resource type="Shader" path="res://scenes/Water.gdshader" id="6_0cw74"]
+[ext_resource type="Texture2D" uid="uid://whohvokslfv3" path="res://ASSETS/Background/Water.png" id="7_a6mw3"]
+[ext_resource type="PackedScene" uid="uid://bn63mqvly4041" path="res://ASSETS/ImageToStl.com_island (1).glb" id="8_8xd4x"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vbsd2"]
+render_priority = 0
+shader = ExtResource("6_0cw74")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_albedo = ExtResource("7_a6mw3")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_gonbx"]
+top_radius = 3000.0
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_vo04r"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_gwdua"]
+seamless = true
+as_normal_map = true
+noise = SubResource("FastNoiseLite_vo04r")
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jqn4b"]
+seamless = true
+as_normal_map = true
+noise = SubResource("FastNoiseLite_vo04r")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_juvkq"]
+transparency = 1
+depth_draw_mode = 1
+albedo_color = Color(0.45098, 0.776471, 0.996078, 0.666667)
+roughness = 0.24
+normal_enabled = true
+normal_texture = SubResource("NoiseTexture2D_gwdua")
+refraction_enabled = true
+refraction_texture = SubResource("NoiseTexture2D_jqn4b")
+uv1_scale = Vector3(0.06, 0.067, 0.067)
+uv1_triplanar = true
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_gtdqh"]
+material = SubResource("StandardMaterial3D_juvkq")
+top_radius = 3000.0
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4rhmj"]
+sky_top_color = Color(0.664403, 0.280022, 0.572699, 1)
+
+[sub_resource type="Sky" id="Sky_f6lfn"]
+sky_material = SubResource("ProceduralSkyMaterial_4rhmj")
+
+[sub_resource type="Environment" id="Environment_aim6k"]
+background_mode = 2
+sky = SubResource("Sky_f6lfn")
+fog_light_color = Color(0.639216, 0.239216, 0.462745, 1)
+fog_density = 0.0
+volumetric_fog_enabled = true
+volumetric_fog_albedo = Color(0.984314, 0.792157, 1, 1)
+volumetric_fog_length = 4.0
+volumetric_fog_ambient_inject = 2.04
+adjustment_enabled = true
+adjustment_contrast = 1.41
 
 [node name="level_2" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.4, 0.3, -6.1)
@@ -15,7 +82,7 @@ level_num = 2
 mesh_library = ExtResource("1_ivki1")
 cell_size = Vector3(2, 1, 2)
 data = {
-"cells": PackedInt32Array(589809, 0, 33, 589810, 0, 33, 589811, 0, 33, 589812, 0, 33, 589813, 0, 33, 589814, 0, 33, 589815, 0, 33, 589816, 0, 33, 589817, 0, 33, 589818, 0, 33, 589819, 0, 33, 589820, 0, 33, 589821, 0, 33, 589822, 0, 33, 589823, 0, 33, 524288, 0, 33, 524289, 0, 33, 524290, 0, 33, 524291, 0, 33, 524294, 0, 33, 524293, 0, 33, 524292, 0, 33, 524296, 0, 33, 524295, 0, 33, 524297, 0, 33, 524298, 0, 33, 524299, 0, 33, 524300, 0, 33, 524301, 0, 33, 524302, 0, 33, 524303, 0, 33, 524304, 0, 33, 524306, 0, 33, 524305, 0, 33, 524307, 0, 33, 524308, 0, 33, 524309, 0, 33, 524310, 0, 33, 524311, 0, 33, 524312, 0, 33, 524313, 0, 33, 524314, 0, 33, 524316, 0, 33, 524315, 0, 33, 524317, 0, 33, 524318, 0, 33, 524324, 0, 33, 524323, 0, 33, 524322, 0, 33, 524321, 0, 33, 524320, 0, 33, 524319, 0, 33, 589837, 0, 655457)
+"cells": PackedInt32Array(589809, 0, 33, 589810, 0, 33, 589811, 0, 33, 589812, 0, 33, 589813, 0, 33, 589814, 0, 33, 589815, 0, 33, 589816, 0, 33, 589817, 0, 33, 589818, 0, 33, 589819, 0, 33, 589820, 0, 33, 589821, 0, 33, 589822, 0, 33, 589823, 0, 33, 524288, 0, 33, 524289, 0, 33, 524290, 0, 33, 524291, 0, 33, 524294, 0, 33, 524293, 0, 33, 524292, 0, 33, 524296, 0, 33, 524295, 0, 33, 524297, 0, 33, 524298, 0, 33, 524299, 0, 33, 524300, 0, 33, 524301, 0, 33, 524302, 0, 33, 524303, 0, 33, 524304, 0, 33, 524306, 0, 33, 524305, 0, 33, 524307, 0, 33, 524308, 0, 33, 524309, 0, 33, 524310, 0, 33, 524311, 0, 33, 524312, 0, 33, 524313, 0, 33, 524314, 0, 33, 524316, 0, 33, 524315, 0, 33, 524317, 0, 33, 524318, 0, 33, 524324, 0, 33, 524323, 0, 33, 524322, 0, 33, 524321, 0, 33, 524320, 0, 33, 524319, 0, 33, 589859, 0, 97, 655357, 0, 655457)
 }
 
 [node name="Coins" type="Node3D" parent="."]
@@ -37,8 +104,7 @@ offset_left = 19.0
 offset_top = 9.0
 offset_right = 107.0
 offset_bottom = 48.0
-text = "level 2
-
+text = "level 1
 "
 metadata/_edit_use_anchors_ = true
 
@@ -51,11 +117,32 @@ text = "Coins: 0
 "
 metadata/_edit_use_anchors_ = true
 
-[node name="door" parent="." instance=ExtResource("5_kd4ek")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.2302, 9.02662, 0)
-level = "res://scenes/level_3.tscn"
-
 [node name="Player" parent="." instance=ExtResource("5_11bml")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.582471, 9.3655, 1.04398)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 9, 1)
+
+[node name="door" parent="." instance=ExtResource("5_kd4ek")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 9, 1)
+level = "res://scenes/level_2.tscn"
+
+[node name="Enovirnment" type="Node3D" parent="."]
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="Enovirnment"]
+material_override = SubResource("ShaderMaterial_vbsd2")
+mesh = SubResource("CylinderMesh_gonbx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Enovirnment"]
+visible = false
+mesh = SubResource("CylinderMesh_gtdqh")
+skeleton = NodePath("../..")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Enovirnment"]
+transform = Transform3D(0.965926, 0.0669873, 0.25, -1.08024e-16, -0.965926, 0.258819, 0.258819, -0.25, -0.933013, 0, 0, 0)
+light_color = Color(1, 0.72549, 1, 1)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Enovirnment"]
+environment = SubResource("Environment_aim6k")
+
+[node name="Island" parent="Enovirnment" instance=ExtResource("8_8xd4x")]
+transform = Transform3D(28.143, 0, 0, 0, 25.74, 0, 0, 0, 10.32, -55.6, 0.7, -84.9)
 
 [connection signal="player_entered" from="door" to="." method="_on_door_player_entered"]
