@@ -57,7 +57,7 @@ material = SubResource("StandardMaterial3D_juvkq")
 top_radius = 3000.0
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4rhmj"]
-sky_top_color = Color(0.664403, 0.280022, 0.572699, 1)
+sky_top_color = Color(0.614734, 0.346236, 0.500551, 1)
 
 [sub_resource type="Sky" id="Sky_f6lfn"]
 sky_material = SubResource("ProceduralSkyMaterial_4rhmj")
