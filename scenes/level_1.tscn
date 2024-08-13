@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://ba3exb5npryrd"]
+[gd_scene load_steps=24 format=3 uid="uid://ba3exb5npryrd"]
 
 [ext_resource type="Script" path="res://Scripts/level.gd" id="1_6gc5d"]
 [ext_resource type="MeshLibrary" uid="uid://co6li3su7tr7s" path="res://ASSETS/assets.tres" id="1_wxkqt"]
@@ -7,13 +7,18 @@
 [ext_resource type="PackedScene" uid="uid://dehdj3ju6skrm" path="res://scenes/door.tscn" id="5_qeub2"]
 [ext_resource type="Shader" path="res://Scripts/Water.gdshader" id="6_ical4"]
 [ext_resource type="Texture2D" uid="uid://whohvokslfv3" path="res://ASSETS/Background/Water.png" id="6_vvrh2"]
+[ext_resource type="Shader" path="res://scenes/WaterMine.gdshader" id="8_34pkg"]
 [ext_resource type="PackedScene" uid="uid://bn63mqvly4041" path="res://ASSETS/Island.glb" id="8_qxs12"]
 [ext_resource type="PackedScene" uid="uid://b2uov4l2ae2wp" path="res://scenes/hud.tscn" id="9_fuak6"]
+[ext_resource type="PackedScene" uid="uid://bqan8loq1t737" path="res://scenes/moving_platform_z.tscn" id="9_o7jn1"]
+[ext_resource type="PackedScene" uid="uid://bublt22xanw0l" path="res://scenes/moving_platformX.tscn" id="10_83gbq"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jnjob"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vbsd2"]
 render_priority = 0
 shader = ExtResource("6_ical4")
-shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/albedo = Color(0.74902, 0.741176, 0.839216, 0.458824)
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0
 shader_parameter/metallic_texture_channel = null
@@ -24,36 +29,45 @@ shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
 shader_parameter/texture_albedo = ExtResource("6_vvrh2")
+shader_parameter/texture_metallic = SubResource("NoiseTexture2D_jnjob")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_gonbx"]
 top_radius = 3000.0
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_vo04r"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4r46b"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_gwdua"]
 seamless = true
 as_normal_map = true
-noise = SubResource("FastNoiseLite_vo04r")
+noise = SubResource("FastNoiseLite_4r46b")
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jqn4b"]
 seamless = true
 as_normal_map = true
-noise = SubResource("FastNoiseLite_vo04r")
+noise = SubResource("FastNoiseLite_4r46b")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_juvkq"]
-transparency = 1
-depth_draw_mode = 1
-albedo_color = Color(0.45098, 0.776471, 0.996078, 0.666667)
-roughness = 0.24
-normal_enabled = true
-normal_texture = SubResource("NoiseTexture2D_gwdua")
-refraction_enabled = true
-refraction_texture = SubResource("NoiseTexture2D_jqn4b")
-uv1_scale = Vector3(0.06, 0.067, 0.067)
-uv1_triplanar = true
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cinae"]
+render_priority = 0
+shader = ExtResource("8_34pkg")
+shader_parameter/albedo = Color(0.45098, 0.764706, 0.996078, 0.176471)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 0.107
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/refraction = 0.500001
+shader_parameter/refraction_texture_channel = null
+shader_parameter/normal_scale = -5.25
+shader_parameter/uv1_blend_sharpness = 1.0
+shader_parameter/uv1_scale = Vector3(0.06, 0.067, 0.067)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_refraction = SubResource("NoiseTexture2D_jqn4b")
+shader_parameter/texture_normal = SubResource("NoiseTexture2D_gwdua")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_gtdqh"]
-material = SubResource("StandardMaterial3D_juvkq")
+material = SubResource("ShaderMaterial_cinae")
 top_radius = 3000.0
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4rhmj"]
@@ -109,23 +123,32 @@ level = "res://scenes/level_2.tscn"
 [node name="Enovirnment" type="Node3D" parent="."]
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="Enovirnment"]
+transform = Transform3D(1, 0, 0, 0, 1, -2.1932e-07, 0, 2.43322e-07, 1, 0, -12, 0)
 material_override = SubResource("ShaderMaterial_vbsd2")
 mesh = SubResource("CylinderMesh_gonbx")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Enovirnment"]
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
 mesh = SubResource("CylinderMesh_gtdqh")
 skeleton = NodePath("../..")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Enovirnment"]
 transform = Transform3D(0.965926, 0.0669873, 0.25, -1.08024e-16, -0.965926, 0.258819, 0.258819, -0.25, -0.933013, 0, 0, 0)
-light_color = Color(1, 0.72549, 1, 1)
+light_color = Color(0.996078, 0.85098, 0.678431, 1)
+light_energy = 1.333
+light_volumetric_fog_energy = 1.334
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Enovirnment"]
 environment = SubResource("Environment_aim6k")
 
 [node name="Island" parent="Enovirnment" instance=ExtResource("8_qxs12")]
 transform = Transform3D(108.264, 0, 11.9815, 0, 184.041, 0, -62.5063, 0, 20.7526, -51.6, 0.7, -375.9)
+
+[node name="MovingPlatformZ" parent="Enovirnment" instance=ExtResource("9_o7jn1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 10, 1)
+
+[node name="MovingPlatform" parent="Enovirnment" instance=ExtResource("10_83gbq")]
+transform = Transform3D(2.99, 0, 0, 0, 0.7, 0, 0, 0, 1, 0, 12, 1)
 
 [node name="HUD" parent="." instance=ExtResource("9_fuak6")]
 
