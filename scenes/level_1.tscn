@@ -1,13 +1,14 @@
-[gd_scene load_steps=19 format=3 uid="uid://ba3exb5npryrd"]
+[gd_scene load_steps=20 format=3 uid="uid://ba3exb5npryrd"]
 
-[ext_resource type="Script" path="res://scenes/level.gd" id="1_6gc5d"]
+[ext_resource type="Script" path="res://Scripts/level.gd" id="1_6gc5d"]
 [ext_resource type="MeshLibrary" uid="uid://co6li3su7tr7s" path="res://ASSETS/assets.tres" id="1_wxkqt"]
 [ext_resource type="PackedScene" uid="uid://dhkgd1hlon6ca" path="res://scenes/coins.tscn" id="4_m5e3k"]
 [ext_resource type="PackedScene" uid="uid://b5f06fuwjpbb0" path="res://scenes/player.tscn" id="5_15k4h"]
 [ext_resource type="PackedScene" uid="uid://dehdj3ju6skrm" path="res://scenes/door.tscn" id="5_qeub2"]
-[ext_resource type="Shader" path="res://scenes/Water.gdshader" id="6_ical4"]
+[ext_resource type="Shader" path="res://Scripts/Water.gdshader" id="6_ical4"]
 [ext_resource type="Texture2D" uid="uid://whohvokslfv3" path="res://ASSETS/Background/Water.png" id="6_vvrh2"]
-[ext_resource type="PackedScene" uid="uid://bn63mqvly4041" path="res://ASSETS/ImageToStl.com_island (1).glb" id="8_qxs12"]
+[ext_resource type="PackedScene" uid="uid://bn63mqvly4041" path="res://ASSETS/Island.glb" id="8_qxs12"]
+[ext_resource type="PackedScene" uid="uid://b2uov4l2ae2wp" path="res://scenes/hud.tscn" id="9_fuak6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vbsd2"]
 render_priority = 0
@@ -97,26 +98,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 2, 0)
 [node name="Coins3" parent="Coins" instance=ExtResource("4_m5e3k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1, 0)
 
-[node name="HUD" type="CanvasLayer" parent="."]
-
-[node name="CurrentLevel" type="Label" parent="HUD"]
-offset_left = 19.0
-offset_top = 9.0
-offset_right = 107.0
-offset_bottom = 48.0
-text = "level 1
-"
-metadata/_edit_use_anchors_ = true
-
-[node name="CoinsLabel" type="Label" parent="HUD"]
-offset_left = 89.0
-offset_top = 10.0
-offset_right = 136.0
-offset_bottom = 33.0
-text = "Coins: 0
-"
-metadata/_edit_use_anchors_ = true
-
 [node name="Player" parent="." instance=ExtResource("5_15k4h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 9, 1)
 axis_lock_linear_z = true
@@ -144,6 +125,8 @@ light_color = Color(1, 0.72549, 1, 1)
 environment = SubResource("Environment_aim6k")
 
 [node name="Island" parent="Enovirnment" instance=ExtResource("8_qxs12")]
-transform = Transform3D(108.264, 0, 11.9815, 0, 184.041, 0, -62.5063, 0, 20.7526, -42.6, 0.7, -375.9)
+transform = Transform3D(108.264, 0, 11.9815, 0, 184.041, 0, -62.5063, 0, 20.7526, -51.6, 0.7, -375.9)
+
+[node name="HUD" parent="." instance=ExtResource("9_fuak6")]
 
 [connection signal="player_entered" from="door" to="." method="_on_door_player_entered"]

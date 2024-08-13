@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dhkgd1hlon6ca"]
 
+[ext_resource type="Script" path="res://Scripts/coins.gd" id="1_5uk1r"]
 [ext_resource type="Texture2D" uid="uid://c0lk0je7ca6cm" path="res://Kennymaps/GLB format/Textures/colormap.png" id="1_rh77g"]
-[ext_resource type="Script" path="res://scenes/coins.gd" id="1_ulnnp"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3fvd3"]
 resource_name = "colormap"
@@ -47,7 +47,7 @@ shadow_mesh = SubResource("ArrayMesh_bm7rl")
 points = PackedVector3Array(-0.173205, 0.0999608, -0.075, -3.3915e-05, 0, -0.075, -0.173205, 0.0999608, 0.075, -0.173205, 0.299961, -0.075, -3.3915e-05, 0, 0.075, 0.173205, 0.0999608, -0.075, -0.173205, 0.299961, 0.075, -3.3915e-05, 0.4, -0.075, 0.173205, 0.0999608, 0.075, 0.173205, 0.299961, -0.075, -3.3915e-05, 0.4, 0.075, 0.173205, 0.299961, 0.075)
 
 [node name="Coins" type="Area3D"]
-script = ExtResource("1_ulnnp")
+script = ExtResource("1_5uk1r")
 
 [node name="coin-gold" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_5dkge")
