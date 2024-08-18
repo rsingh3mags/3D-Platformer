@@ -28,3 +28,5 @@ mesh = SubResource("CapsuleMesh_gx5ot")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.381821, 0, 0, 0, 0.264721, 0, 0, 0, 0.32706, 0, 1.26251, 0)
 shape = SubResource("CapsuleShape3D_33vhl")
+
+[connection signal="area_entered" from="player" to="." method="_on_player_area_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dvnkl228musk3"]
+[gd_scene load_steps=24 format=3 uid="uid://dvnkl228musk3"]
 
 [ext_resource type="MeshLibrary" uid="uid://co6li3su7tr7s" path="res://ASSETS/assets.tres" id="1_ivki1"]
 [ext_resource type="Script" path="res://Scripts/level.gd" id="1_pm122"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://whohvokslfv3" path="res://ASSETS/Background/Water.png" id="7_a6mw3"]
 [ext_resource type="PackedScene" uid="uid://36fwjoq5k6cq" path="res://ASSETS/Lighthouse.glb" id="8_lec2c"]
 [ext_resource type="PackedScene" uid="uid://b2uov4l2ae2wp" path="res://scenes/hud.tscn" id="9_35yl7"]
+[ext_resource type="PackedScene" uid="uid://btj31sudq3uab" path="res://scenes/enemy.tscn" id="10_bmyua"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vbsd2"]
 render_priority = 0
@@ -74,6 +75,12 @@ volumetric_fog_ambient_inject = 2.04
 adjustment_enabled = true
 adjustment_contrast = 1.41
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1ii68"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_rrw7e"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8eu6o"]
+
 [node name="level_2" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.4, 0.3, -6.1)
 script = ExtResource("1_pm122")
@@ -100,6 +107,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1, 0)
 
 [node name="Player" parent="." instance=ExtResource("5_11bml")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 9, 1)
+axis_lock_linear_z = true
 
 [node name="door" parent="." instance=ExtResource("5_kd4ek")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 9, 1)
@@ -127,5 +135,20 @@ environment = SubResource("Environment_aim6k")
 transform = Transform3D(5.53712, 0, 0, 0, 4.73071, 0, 0, 0, 1, -4.3247, 0.775458, -76.5582)
 
 [node name="HUD" parent="." instance=ExtResource("9_35yl7")]
+
+[node name="Enemy" parent="." instance=ExtResource("10_bmyua")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.6556, 15.0805, 1.1006)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.1516, 11.3627, 0)
+physics_material_override = SubResource("PhysicsMaterial_1ii68")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(18.3538, 0, 0, 0, 1, 0, 0, 0, 4.00821, -0.589371, 1.12163, 0.350062)
+mesh = SubResource("BoxMesh_rrw7e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(18.39, 0, 0, 0, 1.00083, 0, 0, 0, 5.43999, -0.884796, 1.61286, 0)
+shape = SubResource("BoxShape3D_8eu6o")
 
 [connection signal="player_entered" from="door" to="." method="_on_door_player_entered"]

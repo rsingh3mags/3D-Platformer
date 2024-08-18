@@ -16,6 +16,6 @@ func _on_coins_collected():
 func set_coins_label():
 	$HUD.coins(Global.coins_collected)
 
-
 func _on_door_player_entered(level):
 	get_tree().change_scene_to_file(level)
+

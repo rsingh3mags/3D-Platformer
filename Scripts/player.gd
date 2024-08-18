@@ -1,4 +1,5 @@
 extends CharacterBody3D
+class_name Player
 const ACCELERATION = 300
 const FRICTION = 0.85
 const JUMP_VELOCITY = 4
@@ -57,3 +58,5 @@ func check_jump():
 		velocity.y += JUMP_VELOCITY * 0.7
 	#check Jump
 	check_jump()
+
+

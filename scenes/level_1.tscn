@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://ba3exb5npryrd"]
+[gd_scene load_steps=25 format=3 uid="uid://ba3exb5npryrd"]
 
 [ext_resource type="Script" path="res://Scripts/level.gd" id="1_6gc5d"]
 [ext_resource type="MeshLibrary" uid="uid://co6li3su7tr7s" path="res://ASSETS/assets.tres" id="1_wxkqt"]
@@ -7,11 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://dehdj3ju6skrm" path="res://scenes/door.tscn" id="5_qeub2"]
 [ext_resource type="Shader" path="res://Scripts/Water.gdshader" id="6_ical4"]
 [ext_resource type="Texture2D" uid="uid://whohvokslfv3" path="res://ASSETS/Background/Water.png" id="6_vvrh2"]
-[ext_resource type="Shader" path="res://scenes/WaterMine.gdshader" id="8_34pkg"]
+[ext_resource type="Shader" path="res://Scripts/WaterMine.gdshader" id="8_34pkg"]
 [ext_resource type="PackedScene" uid="uid://bn63mqvly4041" path="res://ASSETS/Island.glb" id="8_qxs12"]
 [ext_resource type="PackedScene" uid="uid://b2uov4l2ae2wp" path="res://scenes/hud.tscn" id="9_fuak6"]
-[ext_resource type="PackedScene" uid="uid://bqan8loq1t737" path="res://scenes/moving_platform_z.tscn" id="9_o7jn1"]
+[ext_resource type="PackedScene" uid="uid://bqan8loq1t737" path="res://scenes/moving_platform_y.tscn" id="9_o7jn1"]
 [ext_resource type="PackedScene" uid="uid://bublt22xanw0l" path="res://scenes/moving_platformX.tscn" id="10_83gbq"]
+[ext_resource type="PackedScene" uid="uid://btj31sudq3uab" path="res://scenes/enemy.tscn" id="13_cmch7"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jnjob"]
 
@@ -97,7 +98,7 @@ level_num = 1
 mesh_library = ExtResource("1_wxkqt")
 cell_size = Vector3(2, 1, 2)
 data = {
-"cells": PackedInt32Array(589809, 0, 33, 589810, 0, 33, 589811, 0, 33, 589812, 0, 33, 589813, 0, 33, 589814, 0, 33, 589815, 0, 33, 589816, 0, 33, 589817, 0, 33, 589818, 0, 33, 589819, 0, 33, 589820, 0, 33, 589821, 0, 33, 589822, 0, 33, 589823, 0, 33, 524288, 0, 33, 524289, 0, 33, 524290, 0, 33, 524291, 0, 33, 524294, 0, 33, 524293, 0, 33, 524292, 0, 33, 524296, 0, 33, 524295, 0, 33, 524297, 0, 33, 524298, 0, 33, 524299, 0, 33, 524300, 0, 33, 524301, 0, 33, 524302, 0, 33, 524303, 0, 33, 524304, 0, 33, 524306, 0, 33, 524305, 0, 33, 524307, 0, 33, 524308, 0, 33, 524309, 0, 33, 524310, 0, 33, 524311, 0, 33, 524312, 0, 33, 524313, 0, 33, 524314, 0, 33, 524316, 0, 33, 524315, 0, 33, 524317, 0, 33, 524318, 0, 33, 524324, 0, 33, 524323, 0, 33, 524322, 0, 33, 524321, 0, 33, 524320, 0, 33, 524319, 0, 33, 589859, 0, 97, 655357, 0, 655457)
+"cells": PackedInt32Array(589809, 0, 33, 589810, 0, 33, 589811, 0, 33, 589812, 0, 33, 589813, 0, 33, 589814, 0, 33, 589815, 0, 33, 589816, 0, 33, 589817, 0, 33, 589818, 0, 33, 589819, 0, 33, 589820, 0, 33, 589821, 0, 33, 589822, 0, 33, 589823, 0, 33, 524288, 0, 33, 524289, 0, 33, 524290, 0, 33, 524291, 0, 33, 524294, 0, 33, 524293, 0, 33, 524292, 0, 33, 524296, 0, 33, 524295, 0, 33, 524297, 0, 33, 524298, 0, 33, 524299, 0, 33, 524300, 0, 33, 524301, 0, 33, 524302, 0, 33, 524303, 0, 33, 524304, 0, 33, 524306, 0, 33, 524305, 0, 33, 524307, 0, 33, 524308, 0, 33, 524309, 0, 33, 524310, 0, 33, 524311, 0, 33, 524312, 0, 33, 524313, 0, 33, 524314, 0, 33, 524316, 0, 33, 524315, 0, 33, 524317, 0, 33, 524318, 0, 33, 524324, 0, 33, 524323, 0, 33, 524322, 0, 33, 524321, 0, 33, 524320, 0, 33, 524319, 0, 33, 589859, 0, 97, 655357, 0, 655457, 786418, 0, 33, 786419, 0, 33, 786420, 0, 33, 786421, 0, 33)
 }
 
 [node name="Coins" type="Node3D" parent="."]
@@ -123,7 +124,7 @@ level = "res://scenes/level_2.tscn"
 [node name="Enovirnment" type="Node3D" parent="."]
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="Enovirnment"]
-transform = Transform3D(1, 0, 0, 0, 1, -2.1932e-07, 0, 2.43322e-07, 1, 0, -12, 0)
+transform = Transform3D(1, 0, 0, 0, 1, -2.1932e-07, 0, 2.43322e-07, 1, 0, -48, 0)
 material_override = SubResource("ShaderMaterial_vbsd2")
 mesh = SubResource("CylinderMesh_gonbx")
 
@@ -142,14 +143,18 @@ light_volumetric_fog_energy = 1.334
 environment = SubResource("Environment_aim6k")
 
 [node name="Island" parent="Enovirnment" instance=ExtResource("8_qxs12")]
-transform = Transform3D(108.264, 0, 11.9815, 0, 184.041, 0, -62.5063, 0, 20.7526, -51.6, 0.7, -375.9)
-
-[node name="MovingPlatformZ" parent="Enovirnment" instance=ExtResource("9_o7jn1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 10, 1)
+transform = Transform3D(128.127, 0, 37.9456, 0, 165.637, 0, -73.9741, 0, 65.7238, -51.6, 0.7, -467.9)
 
 [node name="MovingPlatform" parent="Enovirnment" instance=ExtResource("10_83gbq")]
 transform = Transform3D(2.99, 0, 0, 0, 0.7, 0, 0, 0, 1, 0, 12, 1)
 
+[node name="MovingPlatformZ" parent="Enovirnment" instance=ExtResource("9_o7jn1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 10, 1)
+
 [node name="HUD" parent="." instance=ExtResource("9_fuak6")]
+
+[node name="Enemy" parent="." instance=ExtResource("13_cmch7")]
+transform = Transform3D(2.8, 0, 0, 0, 2.8, 0, 0, 0, 2.8, -21.2163, 13.3144, 0.993865)
+axis_lock_linear_z = true
 
 [connection signal="player_entered" from="door" to="." method="_on_door_player_entered"]

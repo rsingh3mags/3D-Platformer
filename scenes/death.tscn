@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ceuruk4mup885"]
+
+[ext_resource type="Script" path="res://Scripts/Death.gd" id="1_8oga5"]
+
+[node name="Death" type="Area3D"]
+script = ExtResource("1_8oga5")
