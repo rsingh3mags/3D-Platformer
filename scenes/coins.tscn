@@ -57,3 +57,4 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_mx0x5")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="coins_collected" from="." to="." method="_on_coins_collected"]

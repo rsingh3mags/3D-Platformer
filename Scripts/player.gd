@@ -11,11 +11,9 @@ var max_jumps = 1
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-
+	
 func _physics_process(delta):
-	#if is_on_wall(): velocity.y = MAX_WALL_SLIDE_SPEED * delta
-	if is_on_wall_only():
-		jump_countair =- 1
+
 	#if player is on floor on not.
 	# Add the gravity.
 	if not is_on_floor():
@@ -51,7 +49,8 @@ func _physics_process(delta):
 	velocity.z *= FRICTION
 
 
-	# when player is on wall the jumo velocity is slower than before.
+
+	#when player is on wall the jumo velocity is slower than before.
 func check_jump():
 	if Input.is_action_just_pressed("ui_accept") and is_on_wall_only():
 		velocity = get_wall_normal() * JUMPVELOCITY_INAIR
@@ -59,4 +58,6 @@ func check_jump():
 	#check Jump
 	check_jump()
 
-
+func _on_player_area_entered(area):
+	if area.has_meta("coin"):
+		jump_countair = 0
