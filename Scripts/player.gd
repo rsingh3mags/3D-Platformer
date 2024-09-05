@@ -3,7 +3,7 @@ class_name Player
 const ACCELERATION = 300
 const FRICTION = 0.85
 const JUMP_VELOCITY = 4
-const JUMPVELOCITY_INAIR = 6
+const JUMPVELOCITY_INAIR = 8
 var jump_countair = 0
 var max_jumpsair = 2
 var jump_count = 0
@@ -23,7 +23,8 @@ func _physics_process(delta):
 	if is_on_floor():
 		jump_count = 0
 		jump_countair = 0
-		
+	
+
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and jump_count < max_jumps:
 		velocity.y = JUMP_VELOCITY
@@ -61,3 +62,5 @@ func check_jump():
 func _on_player_area_entered(area):
 	if area.has_meta("coin"):
 		jump_countair = 0
+
+		
