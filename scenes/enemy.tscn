@@ -120,7 +120,8 @@ shader_parameter/texture_normal = SubResource("NoiseTexture2D_gd3dy")
 [sub_resource type="SphereMesh" id="SphereMesh_4ro73"]
 material = SubResource("ShaderMaterial_geg1g")
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_lqd0o"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_jot11"]
+radius = 0.55761
 
 [node name="Enemy" type="CharacterBody3D"]
 transform = Transform3D(1.189, 0, 0, 0, 1.189, 0, 0, 0, 1.189, 0, 0, 0)
@@ -130,15 +131,15 @@ script = ExtResource("1_wcv5q")
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 mesh = SubResource("SphereMesh_4ro73")
 
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.448015, 0, 0, 0, 0.448015, 0, 0, 0, 0.448015, 0, 0, 0)
+shape = SubResource("SphereShape3D_jot11")
+
 [node name="Left" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.205752, 0, 0, 0, 1, -0.19161, -0.115461, 0)
 
 [node name="Death" parent="." instance=ExtResource("2_jx2v0")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Death"]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
-shape = SubResource("SphereShape3D_lqd0o")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
-shape = SubResource("SphereShape3D_lqd0o")
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Death"]
+transform = Transform3D(0.506372, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+shape = SubResource("SphereShape3D_jot11")

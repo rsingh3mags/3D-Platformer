@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://ba3exb5npryrd"]
+[gd_scene load_steps=28 format=3 uid="uid://ba3exb5npryrd"]
 
 [ext_resource type="Script" path="res://Scripts/level.gd" id="1_6gc5d"]
 [ext_resource type="MeshLibrary" uid="uid://co6li3su7tr7s" path="res://ASSETS/assets.tres" id="1_wxkqt"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bn63mqvly4041" path="res://ASSETS/Island.glb" id="8_qxs12"]
 [ext_resource type="PackedScene" uid="uid://b2uov4l2ae2wp" path="res://scenes/hud.tscn" id="9_fuak6"]
 [ext_resource type="PackedScene" uid="uid://bqan8loq1t737" path="res://scenes/moving_platform_y.tscn" id="9_o7jn1"]
+[ext_resource type="PackedScene" uid="uid://ceuruk4mup885" path="res://scenes/death.tscn" id="9_uxpke"]
 [ext_resource type="PackedScene" uid="uid://bublt22xanw0l" path="res://scenes/moving_platformX.tscn" id="10_83gbq"]
 [ext_resource type="PackedScene" uid="uid://btj31sudq3uab" path="res://scenes/enemy.tscn" id="13_cmch7"]
 
@@ -86,6 +87,10 @@ shader_parameter/texture_normal = SubResource("NoiseTexture2D_gwdua")
 material = SubResource("ShaderMaterial_cinae")
 top_radius = 3000.0
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_l0dpn"]
+height = 3.25
+radius = 100.0
+
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4rhmj"]
 sky_top_color = Color(0.614734, 0.346236, 0.500551, 1)
 
@@ -120,13 +125,16 @@ data = {
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.3973, 11, 1)
 
 [node name="Coins" parent="Coins" instance=ExtResource("4_m5e3k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.6154, 5.5479, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.717184, 5.5479, 0)
 
 [node name="Coins2" parent="Coins" instance=ExtResource("4_m5e3k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.2176, 12.1682, 0)
 
 [node name="Coins3" parent="Coins" instance=ExtResource("4_m5e3k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.2815, 18.7905, 0)
+
+[node name="Coins4" parent="Coins" instance=ExtResource("4_m5e3k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.2815, 6.12126, 0)
 
 [node name="Player" parent="." instance=ExtResource("5_15k4h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 9, 1)
@@ -140,6 +148,7 @@ level = "res://scenes/level_2.tscn"
 
 [node name="Water_down" type="CSGMesh3D" parent="Enovirnment"]
 transform = Transform3D(1, 0, 0, 0, 1, -2.1932e-07, 0, 2.43322e-07, 1, 0, -78.5729, 0)
+visible = false
 material_override = SubResource("ShaderMaterial_vbsd2")
 mesh = SubResource("CylinderMesh_gonbx")
 
@@ -147,6 +156,12 @@ mesh = SubResource("CylinderMesh_gonbx")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
 mesh = SubResource("CylinderMesh_gtdqh")
 skeleton = NodePath("../..")
+
+[node name="Death" parent="Enovirnment/Water1" instance=ExtResource("9_uxpke")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enovirnment/Water1/Death"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.56446, 0)
+shape = SubResource("CylinderShape3D_l0dpn")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Enovirnment"]
 transform = Transform3D(0.965926, 0.0669873, 0.25, -1.08024e-16, -0.965926, 0.258819, 0.258819, -0.25, -0.933013, 0, 0, 0)

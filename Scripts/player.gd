@@ -62,5 +62,7 @@ func check_jump():
 func _on_player_area_entered(area):
 	if area.has_meta("coin"):
 		jump_countair = 0
-
-		
+	if area.has_meta("death"):
+		position.x = -18
+		position.y = 9
+		position.z = 1
