@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b5f06fuwjpbb0"]
+[gd_scene load_steps=5 format=3 uid="uid://b5f06fuwjpbb0"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_p8mc6"]
+[ext_resource type="PackedScene" uid="uid://wmf2eu0uuhrg" path="res://addons/third-person-camera/third_person_camera/ThirdPersonCamera.tscn" id="2_en2wk"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dj7og"]
 
@@ -19,9 +20,6 @@ script = ExtResource("1_p8mc6")
 transform = Transform3D(0.573961, 0, 0, 0, 0.504431, 0, 0, 0, 0.582739, -0.012, 2.08165e-12, -0.1)
 shape = SubResource("CapsuleShape3D_dj7og")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.585, 3.328, 9.89491)
-
 [node name="Cube" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.576607, 0, 0, 0, 0.576396, -0.0156069, 0, 0.0156069, 0.576396, -0.0124343, 2.08165e-12, -0.1)
 mesh = SubResource("CapsuleMesh_nrnxl")
@@ -31,5 +29,7 @@ metadata/_edit_group_ = true
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.573961, 0, 0, 0, 0.504431, 0, 0, 0, 0.582739, -0.012, 2.08165e-12, -0.1)
 shape = SubResource("CapsuleShape3D_dj7og")
+
+[node name="ThirdPersonCamera" parent="." instance=ExtResource("2_en2wk")]
 
 [connection signal="area_entered" from="player" to="." method="_on_player_area_entered"]
