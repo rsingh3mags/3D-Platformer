@@ -20,6 +20,9 @@ func _physics_process(delta):
 		if is_on_wall_only():
 			JUMPVELOCITY_INAIR = 12
 		
+		else: 
+			JUMPVELOCITY_INAIR = 8
+		
 		if not is_on_floor():
 			velocity.y -= gravity * delta
 
