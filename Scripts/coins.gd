@@ -11,4 +11,3 @@ func _on_body_entered(body):
 		Global.coins_collected += 1
 		coins_collected.emit()
 		queue_free()
-

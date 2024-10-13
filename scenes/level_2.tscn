@@ -107,7 +107,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1, 0)
 
 [node name="Player" parent="." instance=ExtResource("5_11bml")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 9, 1)
-axis_lock_linear_z = true
 
 [node name="door" parent="." instance=ExtResource("5_kd4ek")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 9, 1)
