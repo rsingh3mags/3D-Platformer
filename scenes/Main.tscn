@@ -1,0 +1,140 @@
+[gd_scene load_steps=20 format=3 uid="uid://1hihjxqqmiau"]
+
+[ext_resource type="Script" path="res://scenes/MM.gd" id="1_5qfwi"]
+[ext_resource type="Shader" path="res://Scripts/Water.gdshader" id="6_7ecvd"]
+[ext_resource type="PackedScene" uid="uid://dqbd86w5ikoq1" path="res://scenes/main_menu.tscn" id="6_h228v"]
+[ext_resource type="Texture2D" uid="uid://whohvokslfv3" path="res://ASSETS/Background/Water.png" id="7_sawvn"]
+[ext_resource type="PackedScene" uid="uid://36fwjoq5k6cq" path="res://ASSETS/Lighthouse.glb" id="7_us3gi"]
+[ext_resource type="Shader" path="res://Scripts/WaterMine.gdshader" id="8_roxle"]
+[ext_resource type="PackedScene" uid="uid://bn63mqvly4041" path="res://ASSETS/Island.glb" id="10_smgco"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jnjob"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vbsd2"]
+render_priority = 0
+shader = ExtResource("6_7ecvd")
+shader_parameter/albedo = Color(0.74902, 0.741176, 0.839216, 0.458824)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_albedo = ExtResource("7_sawvn")
+shader_parameter/texture_metallic = SubResource("NoiseTexture2D_jnjob")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4ipja"]
+render_priority = 0
+shader = ExtResource("6_7ecvd")
+shader_parameter/albedo = null
+shader_parameter/point_size = null
+shader_parameter/roughness = null
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = null
+shader_parameter/metallic = null
+shader_parameter/uv1_scale = null
+shader_parameter/uv1_offset = null
+shader_parameter/uv2_scale = null
+shader_parameter/uv2_offset = null
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_gonbx"]
+material = SubResource("ShaderMaterial_4ipja")
+top_radius = 3000.0
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4r46b"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_gwdua"]
+seamless = true
+as_normal_map = true
+noise = SubResource("FastNoiseLite_4r46b")
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jqn4b"]
+seamless = true
+as_normal_map = true
+noise = SubResource("FastNoiseLite_4r46b")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cinae"]
+render_priority = 0
+shader = ExtResource("8_roxle")
+shader_parameter/albedo = Color(0.45098, 0.764706, 0.996078, 0.176471)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 0.107
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/refraction = 0.500001
+shader_parameter/refraction_texture_channel = null
+shader_parameter/normal_scale = -5.25
+shader_parameter/uv1_blend_sharpness = 1.0
+shader_parameter/uv1_scale = Vector3(0.06, 0.067, 0.067)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_refraction = SubResource("NoiseTexture2D_jqn4b")
+shader_parameter/texture_normal = SubResource("NoiseTexture2D_gwdua")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_gtdqh"]
+material = SubResource("ShaderMaterial_cinae")
+top_radius = 3000.0
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4rhmj"]
+sky_top_color = Color(0.614734, 0.346236, 0.500551, 1)
+
+[sub_resource type="Sky" id="Sky_f6lfn"]
+sky_material = SubResource("ProceduralSkyMaterial_4rhmj")
+
+[sub_resource type="Environment" id="Environment_aim6k"]
+background_mode = 2
+sky = SubResource("Sky_f6lfn")
+fog_light_color = Color(0.639216, 0.239216, 0.462745, 1)
+fog_density = 0.0
+volumetric_fog_enabled = true
+volumetric_fog_albedo = Color(0.984314, 0.792157, 1, 1)
+volumetric_fog_length = 4.0
+volumetric_fog_ambient_inject = 2.04
+adjustment_enabled = true
+adjustment_contrast = 1.41
+
+[node name="level_1" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.4, 0.3, -6.1)
+script = ExtResource("1_5qfwi")
+
+[node name="CameraPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.6767, 0, -46.9009)
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(0.999605, -0.00690795, -0.0272557, 0.0133799, 0.969429, 0.245008, 0.0247299, -0.245276, 0.969138, 3.34736, 63.6388, 181.171)
+
+[node name="Enovirnment" type="Node3D" parent="."]
+
+[node name="Water_down" type="CSGMesh3D" parent="Enovirnment"]
+transform = Transform3D(1, 0, 0, 0, 1, -2.1932e-07, 0, 2.43322e-07, 1, 0, -78.5729, 0)
+visible = false
+material_override = SubResource("ShaderMaterial_vbsd2")
+mesh = SubResource("CylinderMesh_gonbx")
+
+[node name="Water1" type="MeshInstance3D" parent="Enovirnment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
+mesh = SubResource("CylinderMesh_gtdqh")
+skeleton = NodePath("../..")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Enovirnment"]
+transform = Transform3D(0.965926, 0.0669873, 0.25, -1.08024e-16, -0.965926, 0.258819, 0.258819, -0.25, -0.933013, 0, 0, 0)
+light_color = Color(0.996078, 0.85098, 0.678431, 1)
+light_energy = 1.333
+light_volumetric_fog_energy = 1.334
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Enovirnment"]
+environment = SubResource("Environment_aim6k")
+
+[node name="Island" parent="Enovirnment" instance=ExtResource("10_smgco")]
+transform = Transform3D(70.1698, 0, 29.3626, 0, 104.423, 0, -40.5125, 0, 50.8575, -15.305, 0.7, -40.6647)
+
+[node name="Lighthouse" parent="Enovirnment" instance=ExtResource("7_us3gi")]
+transform = Transform3D(12.7103, 0, 0, 0, 12.7103, 0, 0, 0, 12.7103, -17.1271, -7.71385, -35.237)
+visible = false
+
+[node name="MainMenu" parent="." instance=ExtResource("6_h228v")]

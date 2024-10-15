@@ -3,7 +3,7 @@ class_name Player
 const ACCELERATION = 300
 const FRICTION = 0.85
 const JUMP_VELOCITY = 4
-var JUMPVELOCITY_INAIR = 8
+var JUMPVELOCITY_INAIR = 5
 var jump_countair = 0
 var max_jumpsair = 2
 var jump_count = 0
@@ -18,10 +18,10 @@ func _physics_process(delta):
 		# Add the gravity.
 		
 		if is_on_wall_only():
-			JUMPVELOCITY_INAIR = 12
+			JUMPVELOCITY_INAIR = 8
 		
 		else: 
-			JUMPVELOCITY_INAIR = 8
+			JUMPVELOCITY_INAIR = 5
 		
 		if not is_on_floor():
 			velocity.y -= gravity * delta
@@ -30,7 +30,7 @@ func _physics_process(delta):
 		if is_on_floor():
 			jump_count = 0
 			jump_countair = 0
-			JUMPVELOCITY_INAIR = 8
+			JUMPVELOCITY_INAIR = 5
 			
 		# Handle jump.
 		if Input.is_action_just_pressed("ui_accept") and jump_count < max_jumps:

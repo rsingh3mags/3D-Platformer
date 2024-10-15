@@ -1,5 +1,7 @@
 extends Node2D
 
+const CAMERA_ROTATE_SPEED = 30
+@onready var world_camera = $Camera3D
 
 #When start button pressed change the scene to "level_1"
 func _on_start_button_pressed():
