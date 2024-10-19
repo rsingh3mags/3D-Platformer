@@ -1,0 +1,60 @@
+[gd_scene load_steps=2 format=3 uid="uid://iroqx27vjygi"]
+
+[ext_resource type="Script" path="res://scenes/Finished.gd" id="1_j2ulw"]
+
+[node name="Finished" type="Node2D"]
+position = Vector2(-17, -80)
+script = ExtResource("1_j2ulw")
+
+[node name="VFlowContainer" type="VFlowContainer" parent="."]
+offset_left = 73.0
+offset_top = 136.0
+offset_right = 476.0
+offset_bottom = 653.0
+alignment = 1
+
+[node name="Replay" type="Button" parent="VFlowContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 80
+text = "Replay
+"
+
+[node name="Fullscreen" type="Button" parent="VFlowContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 80
+text = "Fullscreen
+"
+
+[node name="QuitButton" type="Button" parent="VFlowContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 80
+text = "Quit
+"
+
+[node name="Msecs" type="Label" parent="."]
+offset_left = 781.0
+offset_top = 358.0
+offset_right = 809.0
+offset_bottom = 381.0
+text = "00:
+"
+
+[node name="Minutes" type="Label" parent="."]
+offset_left = 717.0
+offset_top = 358.0
+offset_right = 743.0
+offset_bottom = 381.0
+text = "00:
+"
+
+[node name="Seconds" type="Label" parent="."]
+offset_left = 750.0
+offset_top = 358.0
+offset_right = 790.0
+offset_bottom = 381.0
+text = "00:
+"
+
+[connection signal="pressed" from="VFlowContainer/Replay" to="." method="_on_replay_pressed"]
+[connection signal="pressed" from="VFlowContainer/Fullscreen" to="." method="_on_fullscreen_pressed"]
+[connection signal="pressed" from="VFlowContainer/QuitButton" to="." method="_on_quit_button_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://ba3exb5npryrd"]
+[gd_scene load_steps=29 format=3 uid="uid://ba3exb5npryrd"]
 
 [ext_resource type="Script" path="res://Scripts/level.gd" id="1_6gc5d"]
 [ext_resource type="MeshLibrary" uid="uid://co6li3su7tr7s" path="res://ASSETS/assets.tres" id="1_wxkqt"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://ceuruk4mup885" path="res://scenes/death.tscn" id="9_uxpke"]
 [ext_resource type="PackedScene" uid="uid://bublt22xanw0l" path="res://scenes/moving_platformX.tscn" id="10_83gbq"]
 [ext_resource type="PackedScene" uid="uid://btj31sudq3uab" path="res://scenes/enemy.tscn" id="13_cmch7"]
+[ext_resource type="PackedScene" uid="uid://cmbh1gqjw1bmk" path="res://scenes/timer.tscn" id="15_fle33"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jnjob"]
 
@@ -109,7 +110,7 @@ volumetric_fog_ambient_inject = 2.04
 adjustment_enabled = true
 adjustment_contrast = 1.41
 
-[node name="level_1" type="Node3D"]
+[node name="level_3" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.4, 0.3, -6.1)
 script = ExtResource("1_6gc5d")
 level_num = 1
@@ -186,5 +187,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 10, 1)
 [node name="Enemy" parent="." instance=ExtResource("13_cmch7")]
 transform = Transform3D(2.8, 0, 0, 0, 2.8, 0, 0, 0, 2.8, -21.2163, 13.3144, 0.993865)
 axis_lock_linear_z = true
+
+[node name="Timer" parent="." instance=ExtResource("15_fle33")]
 
 [connection signal="player_entered" from="door" to="." method="_on_door_player_entered"]

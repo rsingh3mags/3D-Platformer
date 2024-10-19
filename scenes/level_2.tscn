@@ -1,20 +1,27 @@
-[gd_scene load_steps=24 format=3 uid="uid://dvnkl228musk3"]
+[gd_scene load_steps=29 format=3 uid="uid://drjsxhhu44a4j"]
 
-[ext_resource type="MeshLibrary" uid="uid://co6li3su7tr7s" path="res://ASSETS/assets.tres" id="1_ivki1"]
-[ext_resource type="Script" path="res://Scripts/level.gd" id="1_pm122"]
-[ext_resource type="PackedScene" uid="uid://b5f06fuwjpbb0" path="res://scenes/player.tscn" id="5_11bml"]
-[ext_resource type="PackedScene" uid="uid://dhkgd1hlon6ca" path="res://scenes/coins.tscn" id="5_f6g8p"]
-[ext_resource type="PackedScene" uid="uid://dehdj3ju6skrm" path="res://scenes/door.tscn" id="5_kd4ek"]
-[ext_resource type="Shader" path="res://Scripts/Water.gdshader" id="6_0cw74"]
-[ext_resource type="Texture2D" uid="uid://whohvokslfv3" path="res://ASSETS/Background/Water.png" id="7_a6mw3"]
-[ext_resource type="PackedScene" uid="uid://36fwjoq5k6cq" path="res://ASSETS/Lighthouse.glb" id="8_lec2c"]
-[ext_resource type="PackedScene" uid="uid://b2uov4l2ae2wp" path="res://scenes/hud.tscn" id="9_35yl7"]
-[ext_resource type="PackedScene" uid="uid://btj31sudq3uab" path="res://scenes/enemy.tscn" id="10_bmyua"]
+[ext_resource type="Script" path="res://Scripts/level.gd" id="1_05oyp"]
+[ext_resource type="MeshLibrary" uid="uid://co6li3su7tr7s" path="res://ASSETS/assets.tres" id="2_skqwr"]
+[ext_resource type="PackedScene" uid="uid://dhkgd1hlon6ca" path="res://scenes/coins.tscn" id="3_swkul"]
+[ext_resource type="PackedScene" uid="uid://b5f06fuwjpbb0" path="res://scenes/player.tscn" id="4_oofv6"]
+[ext_resource type="PackedScene" uid="uid://dehdj3ju6skrm" path="res://scenes/door.tscn" id="5_c8o2q"]
+[ext_resource type="Shader" path="res://Scripts/Water.gdshader" id="6_x1sov"]
+[ext_resource type="Texture2D" uid="uid://whohvokslfv3" path="res://ASSETS/Background/Water.png" id="7_pqg30"]
+[ext_resource type="Shader" path="res://Scripts/WaterMine.gdshader" id="8_rceok"]
+[ext_resource type="PackedScene" uid="uid://ceuruk4mup885" path="res://scenes/death.tscn" id="9_ickbg"]
+[ext_resource type="PackedScene" uid="uid://bn63mqvly4041" path="res://ASSETS/Island.glb" id="10_srcqd"]
+[ext_resource type="PackedScene" uid="uid://bublt22xanw0l" path="res://scenes/moving_platformX.tscn" id="11_7hcr4"]
+[ext_resource type="PackedScene" uid="uid://bqan8loq1t737" path="res://scenes/moving_platform_y.tscn" id="12_82awu"]
+[ext_resource type="PackedScene" uid="uid://b2uov4l2ae2wp" path="res://scenes/hud.tscn" id="13_8t7b3"]
+[ext_resource type="PackedScene" uid="uid://btj31sudq3uab" path="res://scenes/enemy.tscn" id="14_xudmp"]
+[ext_resource type="PackedScene" uid="uid://cmbh1gqjw1bmk" path="res://scenes/timer.tscn" id="15_382ay"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jnjob"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vbsd2"]
 render_priority = 0
-shader = ExtResource("6_0cw74")
-shader_parameter/albedo = Color(1, 1, 1, 1)
+shader = ExtResource("6_x1sov")
+shader_parameter/albedo = Color(0.74902, 0.741176, 0.839216, 0.458824)
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0
 shader_parameter/metallic_texture_channel = null
@@ -24,41 +31,69 @@ shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_albedo = ExtResource("7_a6mw3")
+shader_parameter/texture_albedo = ExtResource("7_pqg30")
+shader_parameter/texture_metallic = SubResource("NoiseTexture2D_jnjob")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4ipja"]
+render_priority = 0
+shader = ExtResource("6_x1sov")
+shader_parameter/albedo = null
+shader_parameter/point_size = null
+shader_parameter/roughness = null
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = null
+shader_parameter/metallic = null
+shader_parameter/uv1_scale = null
+shader_parameter/uv1_offset = null
+shader_parameter/uv2_scale = null
+shader_parameter/uv2_offset = null
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_gonbx"]
+material = SubResource("ShaderMaterial_4ipja")
 top_radius = 3000.0
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_vo04r"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4r46b"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_gwdua"]
 seamless = true
 as_normal_map = true
-noise = SubResource("FastNoiseLite_vo04r")
+noise = SubResource("FastNoiseLite_4r46b")
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jqn4b"]
 seamless = true
 as_normal_map = true
-noise = SubResource("FastNoiseLite_vo04r")
+noise = SubResource("FastNoiseLite_4r46b")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_juvkq"]
-transparency = 1
-depth_draw_mode = 1
-albedo_color = Color(0.45098, 0.776471, 0.996078, 0.666667)
-roughness = 0.24
-normal_enabled = true
-normal_texture = SubResource("NoiseTexture2D_gwdua")
-refraction_enabled = true
-refraction_texture = SubResource("NoiseTexture2D_jqn4b")
-uv1_scale = Vector3(0.06, 0.067, 0.067)
-uv1_triplanar = true
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cinae"]
+render_priority = 0
+shader = ExtResource("8_rceok")
+shader_parameter/albedo = Color(0.45098, 0.764706, 0.996078, 0.176471)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 0.107
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/refraction = 0.500001
+shader_parameter/refraction_texture_channel = null
+shader_parameter/normal_scale = -5.25
+shader_parameter/uv1_blend_sharpness = 1.0
+shader_parameter/uv1_scale = Vector3(0.06, 0.067, 0.067)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_refraction = SubResource("NoiseTexture2D_jqn4b")
+shader_parameter/texture_normal = SubResource("NoiseTexture2D_gwdua")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_gtdqh"]
-material = SubResource("StandardMaterial3D_juvkq")
+material = SubResource("ShaderMaterial_cinae")
 top_radius = 3000.0
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_l0dpn"]
+height = 3.25
+radius = 100.0
+
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4rhmj"]
-sky_top_color = Color(0.664403, 0.280022, 0.572699, 1)
+sky_top_color = Color(0.614734, 0.346236, 0.500551, 1)
 
 [sub_resource type="Sky" id="Sky_f6lfn"]
 sky_material = SubResource("ProceduralSkyMaterial_4rhmj")
@@ -75,79 +110,84 @@ volumetric_fog_ambient_inject = 2.04
 adjustment_enabled = true
 adjustment_contrast = 1.41
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1ii68"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_rrw7e"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_8eu6o"]
-
 [node name="level_2" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.4, 0.3, -6.1)
-script = ExtResource("1_pm122")
+script = ExtResource("1_05oyp")
 level_num = 2
 
 [node name="GridMap" type="GridMap" parent="."]
-mesh_library = ExtResource("1_ivki1")
+mesh_library = ExtResource("2_skqwr")
 cell_size = Vector3(2, 1, 2)
+collision_layer = 3
 data = {
-"cells": PackedInt32Array(589809, 0, 33, 589810, 0, 33, 589811, 0, 33, 589812, 0, 33, 589813, 0, 33, 589814, 0, 33, 589815, 0, 33, 589816, 0, 33, 589817, 0, 33, 589818, 0, 33, 589819, 0, 33, 589820, 0, 33, 589821, 0, 33, 589822, 0, 33, 589823, 0, 33, 524288, 0, 33, 524289, 0, 33, 524290, 0, 33, 524291, 0, 33, 524294, 0, 33, 524293, 0, 33, 524292, 0, 33, 524296, 0, 33, 524295, 0, 33, 524297, 0, 33, 524298, 0, 33, 524299, 0, 33, 524300, 0, 33, 524301, 0, 33, 524302, 0, 33, 524303, 0, 33, 524304, 0, 33, 524306, 0, 33, 524305, 0, 33, 524307, 0, 33, 524308, 0, 33, 524309, 0, 33, 524310, 0, 33, 524311, 0, 33, 524312, 0, 33, 524313, 0, 33, 524314, 0, 33, 524316, 0, 33, 524315, 0, 33, 524317, 0, 33, 524318, 0, 33, 524324, 0, 33, 524323, 0, 33, 524322, 0, 33, 524321, 0, 33, 524320, 0, 33, 524319, 0, 33, 589859, 0, 97, 655357, 0, 655457)
+"cells": PackedInt32Array(589809, 0, 33, 589810, 0, 33, 589811, 0, 33, 589812, 0, 33, 589813, 0, 33, 589814, 0, 33, 589815, 0, 33, 589816, 0, 33, 589817, 0, 33, 589818, 0, 33, 589819, 0, 33, 589820, 0, 33, 589821, 0, 33, 589822, 0, 33, 589823, 0, 33, 524288, 0, 33, 524289, 0, 33, 524290, 0, 33, 524291, 0, 33, 524294, 0, 33, 524293, 0, 33, 524292, 0, 33, 524296, 0, 33, 524295, 0, 33, 524297, 0, 33, 524298, 0, 33, 524299, 0, 33, 524300, 0, 33, 524301, 0, 33, 524302, 0, 33, 524303, 0, 33, 524304, 0, 33, 524306, 0, 33, 524305, 0, 33, 524307, 0, 33, 524308, 0, 33, 524309, 0, 33, 524310, 0, 33, 524311, 0, 33, 524312, 0, 33, 524313, 0, 33, 524314, 0, 33, 524316, 0, 33, 524315, 0, 33, 524317, 0, 33, 524318, 0, 33, 524324, 0, 33, 524323, 0, 33, 524322, 0, 33, 524321, 0, 33, 524320, 0, 33, 524319, 0, 33, 786418, 0, 33, 786419, 0, 33, 786420, 0, 33, 786421, 0, 33, 720903, 0, 16, 851975, 0, 16, 983047, 0, 16, 720905, 0, 16, 589833, 0, 16, 851977, 0, 16, 983049, 0, 16, 1114121, 0, 16, 1245193, 0, 16, 1376265, 0, 16, 1507337, 0, 16, 1114119, 0, 16, 1245191, 0, 16, 1376263, 0, 16, 1507335, 0, 16, 1638407, 0, 16, 1638409, 0, 16, 1769481, 0, 16, 1769479, 0, 16, 1900551, 0, 16, 1900553, 0, 16, 2031625, 0, 16, 2031623, 0, 16, 2097184, 0, 75, 2097183, 0, 75, 2097186, 0, 75, 2097185, 0, 75, 2097187, 0, 75, 2162721, 0, 97)
 }
 
 [node name="Coins" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 11, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.3973, 11, 1)
 
-[node name="Coins" parent="Coins" instance=ExtResource("5_f6g8p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, 0)
+[node name="Coins" parent="Coins" instance=ExtResource("3_swkul")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.717184, 5.5479, 0)
 
-[node name="Coins2" parent="Coins" instance=ExtResource("5_f6g8p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 2, 0)
+[node name="Coins2" parent="Coins" instance=ExtResource("3_swkul")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.2176, 12.1682, 0)
 
-[node name="Coins3" parent="Coins" instance=ExtResource("5_f6g8p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1, 0)
+[node name="Coins3" parent="Coins" instance=ExtResource("3_swkul")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.2815, 18.7905, 0)
 
-[node name="Player" parent="." instance=ExtResource("5_11bml")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 9, 1)
+[node name="Coins4" parent="Coins" instance=ExtResource("3_swkul")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.2815, 6.12126, 0)
 
-[node name="door" parent="." instance=ExtResource("5_kd4ek")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 9, 1)
-level = "res://scenes/level_2.tscn"
+[node name="Player" parent="." instance=ExtResource("4_oofv6")]
+transform = Transform3D(0.996204, 0, 0, 0, 0.996204, 0, 0, 0, 0.996204, -18, 10.2275, 1)
+
+[node name="door" parent="." instance=ExtResource("5_c8o2q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.0507, 33.4423, 0.770156)
+level = "res://scenes/level_3.tscn"
 
 [node name="Enovirnment" type="Node3D" parent="."]
 
-[node name="CSGMesh3D" type="CSGMesh3D" parent="Enovirnment"]
+[node name="Water_down" type="CSGMesh3D" parent="Enovirnment"]
+transform = Transform3D(1, 0, 0, 0, 1, -2.1932e-07, 0, 2.43322e-07, 1, 0, -78.5729, 0)
+visible = false
 material_override = SubResource("ShaderMaterial_vbsd2")
 mesh = SubResource("CylinderMesh_gonbx")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Enovirnment"]
-visible = false
+[node name="Water1" type="MeshInstance3D" parent="Enovirnment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
 mesh = SubResource("CylinderMesh_gtdqh")
 skeleton = NodePath("../..")
 
+[node name="Death" parent="Enovirnment/Water1" instance=ExtResource("9_ickbg")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enovirnment/Water1/Death"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.56446, 0)
+shape = SubResource("CylinderShape3D_l0dpn")
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Enovirnment"]
 transform = Transform3D(0.965926, 0.0669873, 0.25, -1.08024e-16, -0.965926, 0.258819, 0.258819, -0.25, -0.933013, 0, 0, 0)
-light_color = Color(1, 0.72549, 1, 1)
+light_color = Color(0.996078, 0.85098, 0.678431, 1)
+light_energy = 1.333
+light_volumetric_fog_energy = 1.334
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Enovirnment"]
 environment = SubResource("Environment_aim6k")
 
-[node name="Lighthouse" parent="Enovirnment" instance=ExtResource("8_lec2c")]
-transform = Transform3D(5.53712, 0, 0, 0, 4.73071, 0, 0, 0, 1, -4.3247, 0.775458, -76.5582)
+[node name="Island" parent="Enovirnment" instance=ExtResource("10_srcqd")]
+transform = Transform3D(128.127, 0, 37.9456, 0, 165.637, 0, -73.9741, 0, 65.7238, -51.6, 0.7, -467.9)
 
-[node name="HUD" parent="." instance=ExtResource("9_35yl7")]
+[node name="MovingPlatform" parent="Enovirnment" instance=ExtResource("11_7hcr4")]
+transform = Transform3D(2.99, 0, 0, 0, 0.7, 0, 0, 0, 1, 26.4972, 32.2313, 1)
 
-[node name="Enemy" parent="." instance=ExtResource("10_bmyua")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.6556, 15.0805, 1.1006)
+[node name="MovingPlatformZ" parent="Enovirnment" instance=ExtResource("12_82awu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 10, 1)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.1516, 11.3627, 0)
-physics_material_override = SubResource("PhysicsMaterial_1ii68")
+[node name="HUD" parent="." instance=ExtResource("13_8t7b3")]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
-transform = Transform3D(18.3538, 0, 0, 0, 1, 0, 0, 0, 4.00821, -0.589371, 1.12163, 0.350062)
-mesh = SubResource("BoxMesh_rrw7e")
+[node name="Enemy" parent="." instance=ExtResource("14_xudmp")]
+transform = Transform3D(2.8, 0, 0, 0, 2.8, 0, 0, 0, 2.8, -21.2163, 13.3144, 0.993865)
+axis_lock_linear_z = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(18.39, 0, 0, 0, 1.00083, 0, 0, 0, 5.43999, -0.884796, 1.61286, 0)
-shape = SubResource("BoxShape3D_8eu6o")
+[node name="Timer" parent="." instance=ExtResource("15_382ay")]
 
 [connection signal="player_entered" from="door" to="." method="_on_door_player_entered"]

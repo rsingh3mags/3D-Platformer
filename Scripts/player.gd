@@ -57,6 +57,10 @@ func _physics_process(delta):
 	velocity.z *= FRICTION
 
 
+func _input(event):
+	if event.is_action_pressed("restart"):
+		get_tree().change_scene_to_file("res://scenes/level_1.tscn")
+		Global.coins_collected = 0
 
 	#when player is on wall the jumo velocity is slower than before.
 func check_jump():

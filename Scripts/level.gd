@@ -1,12 +1,14 @@
 extends Node3D
-
+@onready var time: float = Global.time
 @export var level_num = 0 
 
 #adding the coins once they are collected
-func _input(InputEvent):
-	if  Input.is_action_just_pressed("restart"):
-		Global.coins_collected = 0
-		get_tree().call_deferred("reload_current_scene")
+# All the code that is needed for the timer to work
+
+func _process(_delta) -> void:
+	$Timer/Minutes.text = "%02d:" % Global.minutes
+	$Timer/Seconds.text = "%02d." % Global.seconds
+	$Timer/Msecs.text = "%03d" % Global.msec
 
 func _ready():
 	$HUD.level(level_num)
@@ -18,9 +20,10 @@ func _ready():
 func _on_coins_collected():
 	set_coins_label() 
 	
+	
 func set_coins_label():
 	$HUD.coins(Global.coins_collected)
 
+
 func _on_door_player_entered(level):
 	get_tree().call_deferred("change_scene_to_file", level)
-	Global.coins_collected = 0

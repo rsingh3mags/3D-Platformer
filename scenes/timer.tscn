@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://cmbh1gqjw1bmk"]
+
+[node name="Timer" type="CanvasLayer"]
+
+[node name="Msecs" type="Label" parent="."]
+offset_left = 261.0
+offset_right = 301.0
+offset_bottom = 23.0
+text = "00: "
+
+[node name="Minutes" type="Label" parent="."]
+offset_left = 195.0
+offset_right = 218.0
+offset_bottom = 26.0
+text = "00:
+"
+
+[node name="Seconds" type="Label" parent="."]
+offset_left = 228.0
+offset_right = 254.0
+offset_bottom = 23.0
+text = "00:
+"

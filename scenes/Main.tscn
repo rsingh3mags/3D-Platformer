@@ -1,6 +1,5 @@
 [gd_scene load_steps=21 format=3 uid="uid://1hihjxqqmiau"]
 
-[ext_resource type="Script" path="res://scenes/MM.gd" id="1_5qfwi"]
 [ext_resource type="Shader" path="res://Scripts/Water.gdshader" id="6_7ecvd"]
 [ext_resource type="PackedScene" uid="uid://dqbd86w5ikoq1" path="res://scenes/main_menu.tscn" id="6_h228v"]
 [ext_resource type="Texture2D" uid="uid://whohvokslfv3" path="res://ASSETS/Background/Water.png" id="7_sawvn"]
@@ -8,6 +7,17 @@
 [ext_resource type="MeshLibrary" uid="uid://co6li3su7tr7s" path="res://ASSETS/assets.tres" id="8_4qlyh"]
 [ext_resource type="Shader" path="res://Scripts/WaterMine.gdshader" id="8_roxle"]
 [ext_resource type="PackedScene" uid="uid://bn63mqvly4041" path="res://ASSETS/Island.glb" id="10_smgco"]
+
+[sub_resource type="GDScript" id="GDScript_gtakj"]
+script/source = "extends Node3D
+
+@onready var camera_pivot = $CameraPivot
+var rotation_speed = 0.3
+
+#func _process(delta):
+	#camera_pivot.rotation_degrees.y += delta + rotation_speed
+	
+"
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jnjob"]
 
@@ -101,7 +111,7 @@ adjustment_contrast = 1.41
 
 [node name="level_1" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.4, 0.3, -6.1)
-script = ExtResource("1_5qfwi")
+script = SubResource("GDScript_gtakj")
 
 [node name="CameraPivot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.6767, 0, -46.9009)
