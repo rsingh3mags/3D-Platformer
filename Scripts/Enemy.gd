@@ -19,7 +19,6 @@ func _physics_process(delta):
 
 func flip():
 	facing_right = !facing_right
-
 	scale.x = scale.x * -1
 	if facing_right:
 		speed = abs(speed)
