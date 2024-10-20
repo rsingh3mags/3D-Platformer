@@ -11,6 +11,7 @@ func _ready():
 	$Minutes.text = "%02d:" % Global.minutes
 	$Seconds.text = "%02d." % Global.seconds 
 	$Msecs.text = "%03d" % Global.msec
+	
 # When the player presses start level 1 starts playing.
 func _on_replay_pressed():
 	get_tree().change_scene_to_file("res://scenes/Main.tscn")

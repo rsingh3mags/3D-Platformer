@@ -15,27 +15,32 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 func _physics_process(delta):
 	if state == "alive":
 		#if player is on floor on not.
-		# Add the gravity.
+		# Add the gravity
 		
 		if is_on_wall_only():
 			JUMPVELOCITY_INAIR = 8
-		
+			$AuxScene/AnimationPlayer.play("HangingIdle")
 		else: 
 			JUMPVELOCITY_INAIR = 5
 		
 		if not is_on_floor():
 			velocity.y -= gravity * delta
-
+			$AuxScene/AnimationPlayer.play("FallingIdle")
+			
+		if  Input.is_action_just_pressed("ui_right"):
+			$AuxScene/AnimationPlayer.play("Running(1)")
+			
 		#When player touches the floor all jump counters reset.
 		if is_on_floor():
 			jump_count = 0
 			jump_countair = 0
 			JUMPVELOCITY_INAIR = 5
-			
+			$AuxScene/AnimationPlayer.play("StandingW_BriefcaseIdle")
 		# Handle jump.
 		if Input.is_action_just_pressed("ui_accept") and jump_count < max_jumps:
 			velocity.y = JUMP_VELOCITY
 			jump_count += 1
+			$AuxScene/AnimationPlayer.play("RunningJump")
 
 		#player jump counter in air.
 		elif Input.is_action_just_pressed("ui_accept") and not is_on_floor() and jump_countair < max_jumpsair:
@@ -46,15 +51,18 @@ func _physics_process(delta):
 		var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 		var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 		
+		
+		
+		
 		# how direction is defined
 		if direction:
 			velocity.x = direction.x * ACCELERATION * delta
 			velocity.z = direction.z * ACCELERATION * delta
 
 	# for stoping player and causing decelration.
-	move_and_slide()
-	velocity.x *= FRICTION
-	velocity.z *= FRICTION
+		move_and_slide()
+		velocity.x *= FRICTION
+		velocity.z *= FRICTION
 
 
 func _input(event):
@@ -67,6 +75,7 @@ func check_jump():
 	if Input.is_action_just_pressed("ui_accept") and is_on_wall_only():
 		velocity = get_wall_normal() * JUMPVELOCITY_INAIR
 		velocity.y += JUMP_VELOCITY * 0.7
+		
 	#check Jump
 	check_jump()
 

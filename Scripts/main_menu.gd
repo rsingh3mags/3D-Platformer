@@ -8,6 +8,7 @@ func _on_start_button_pressed():
 	Global.game_start=true
 	get_tree().change_scene_to_file("res://scenes/level_1.tscn")
 	Global.coins_collected = 0
+	Global.set_process(true)
 	
 #fullscreen when pressed
 func _on_fullscreen_pressed():
