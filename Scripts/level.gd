@@ -1,7 +1,7 @@
 extends Node3D
 @onready var time: float = Global.time
 @export var level_num = 0 
-var save_path = "user://besttimedata.save"
+var save_path = "user://besttime.save"
 #adding the coins once they are collected
 # All the code that is needed for the timer to work
 
@@ -11,7 +11,7 @@ func _process(delta) -> void:
 	$Timer/Msecs.text = "%03d" % Global.msec
 	Global.current_time += delta
 	
-
+	
 func _ready():
 	$HUD.level(level_num)
 	set_coins_label()

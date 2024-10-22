@@ -1,5 +1,5 @@
 extends Node
-var save_path = "user://besttimedata.save"
+var save_path = "user://besttime.save"
 #how many coins collected
 var coins_collected = 0
 var time: float = 0.0
