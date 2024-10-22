@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://iroqx27vjygi"]
 
-[ext_resource type="Script" path="res://scenes/Finished.gd" id="1_j2ulw"]
+[ext_resource type="Script" path="res://Scripts/Finished.gd" id="1_j2ulw"]
 
 [node name="Finished" type="Node2D"]
 position = Vector2(-17, -80)

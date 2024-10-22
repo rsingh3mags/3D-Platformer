@@ -139,7 +139,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.2815, 18.7905, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.2815, 6.12126, 0)
 
 [node name="Player" parent="." instance=ExtResource("4_oofv6")]
-transform = Transform3D(0.996204, 0, 0, 0, 0.996204, 0, 0, 0, 0.996204, -18, 10.2275, 1)
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -18, 10.9535, 1)
 
 [node name="door" parent="." instance=ExtResource("5_c8o2q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.0507, 33.4423, 0.770156)

@@ -3,21 +3,35 @@
 [node name="Timer" type="CanvasLayer"]
 
 [node name="Msecs" type="Label" parent="."]
-offset_left = 261.0
-offset_right = 301.0
-offset_bottom = 23.0
+offset_left = 139.0
+offset_top = 57.0
+offset_right = 172.0
+offset_bottom = 80.0
 text = "00: "
+metadata/_edit_group_ = true
 
 [node name="Minutes" type="Label" parent="."]
-offset_left = 195.0
-offset_right = 218.0
-offset_bottom = 26.0
+offset_left = 73.0
+offset_top = 57.0
+offset_right = 96.0
+offset_bottom = 83.0
 text = "00:
 "
+metadata/_edit_group_ = true
 
 [node name="Seconds" type="Label" parent="."]
-offset_left = 228.0
-offset_right = 254.0
-offset_bottom = 23.0
+offset_left = 106.0
+offset_top = 57.0
+offset_right = 132.0
+offset_bottom = 80.0
 text = "00:
+"
+metadata/_edit_group_ = true
+
+[node name="Best Time" type="Label" parent="."]
+offset_left = 203.0
+offset_top = -2.0
+offset_right = 284.0
+offset_bottom = 21.0
+text = "Best Time:
 "

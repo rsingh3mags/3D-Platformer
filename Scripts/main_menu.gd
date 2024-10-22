@@ -1,7 +1,7 @@
 extends Node2D
 
 const CAMERA_ROTATE_SPEED = 30
-@onready var world_camera = $Camera3D
+#@onready var world_camera = $Camera3D
 
 #When start button pressed change the scene to "level_1"
 func _on_start_button_pressed():
@@ -9,6 +9,7 @@ func _on_start_button_pressed():
 	get_tree().change_scene_to_file("res://scenes/level_1.tscn")
 	Global.coins_collected = 0
 	Global.set_process(true)
+	Global.load_score()
 	
 #fullscreen when pressed
 func _on_fullscreen_pressed():
@@ -19,3 +20,6 @@ func _on_fullscreen_pressed():
 
 func _on_quit_button_pressed():
 	get_tree().quit()
+
+func _ready():
+	Global.load_score()
