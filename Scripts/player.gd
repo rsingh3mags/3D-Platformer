@@ -103,7 +103,11 @@ func _on_player_area_entered(area):
 		velocity.y = 0 
 		velocity.z = 0 
 		await get_tree().create_timer(2).timeout 
-		position.x = -18
-		position.y = 10.227
-		position.z = 1
+		get_tree().change_scene_to_file("res://scenes/level_1.tscn")
+		Global.coins_collected = 0 
+		Global.time = 0
+		Global.minutes = 0
+		Global.seconds = 0
+		Global.msec = 0
+		Global.coins_collected = 0
 		state = "alive"
