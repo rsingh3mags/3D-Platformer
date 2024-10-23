@@ -37,4 +37,5 @@ text = "Quit
 
 [connection signal="pressed" from="VFlowContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="VFlowContainer/Fullscreen" to="." method="_on_fullscreen_pressed"]
+[connection signal="pressed" from="VFlowContainer/Controls" to="." method="_on_controls_pressed"]
 [connection signal="pressed" from="VFlowContainer/QuitButton" to="." method="_on_quit_button_pressed"]

@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=3 uid="uid://dl7px4fbuwd2"]
+
+[ext_resource type="Script" path="res://controls_text.gd" id="1_pgh5a"]
+
+[node name="ControlsText" type="Node2D"]
+script = ExtResource("1_pgh5a")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 361.0
+offset_top = 8.0
+offset_right = 1142.0
+offset_bottom = 545.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Up Arrow & Space Bar & \"W\" key : Jump
+Right Arrow & \"D\" Key: Move Right
+Left Arrow & \"A\" Key: Move Left 
+Coins: The coins are boosters so everytime you collect
+               A Coin you reset your jumps in the air back to
+               2 so they're \"Coin Boosters\"
+
+Wall Jumps: Everytime you touch the wall your jump 
+                       Velocity is much higher so make sure you
+                       Touch the wall while climping higher!
+
+Death: Everytime you die you go straight to level 1! "
+
+[node name="MainMenu" type="Button" parent="."]
+offset_left = 5.0
+offset_top = 242.0
+offset_right = 261.0
+offset_bottom = 354.0
+theme_override_font_sizes/font_size = 40
+text = "Main Menu
+"
+
+[connection signal="pressed" from="MainMenu" to="." method="_on_main_menu_pressed"]

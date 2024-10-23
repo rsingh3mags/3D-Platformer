@@ -1,8 +1,5 @@
 extends Node2D
 
-const CAMERA_ROTATE_SPEED = 30
-#@onready var world_camera = $Camera3D
-
 #When start button pressed change the scene to "level_1"
 func _on_start_button_pressed():
 	Global.game_start=true
@@ -18,8 +15,14 @@ func _on_fullscreen_pressed():
 	elif DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_WINDOWED:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN )
 
+# when quit is pressed the game closes
 func _on_quit_button_pressed():
 	get_tree().quit()
-
+# 
+# when the game is started load the score
 func _ready():
 	Global.load_score()
+
+# when controls is pressed it changes scene
+func _on_controls_pressed():
+	get_tree().change_scene_to_file("res://scenes/Controls.tscn")

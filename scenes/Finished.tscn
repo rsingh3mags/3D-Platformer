@@ -32,27 +32,39 @@ text = "Quit
 "
 
 [node name="Msecs" type="Label" parent="."]
-offset_left = 781.0
-offset_top = 358.0
-offset_right = 809.0
-offset_bottom = 381.0
+offset_left = 862.0
+offset_top = 367.0
+offset_right = 904.0
+offset_bottom = 409.0
+theme_override_font_sizes/font_size = 30
 text = "00:
 "
 
 [node name="Minutes" type="Label" parent="."]
-offset_left = 717.0
-offset_top = 358.0
-offset_right = 743.0
-offset_bottom = 381.0
+offset_left = 757.0
+offset_top = 366.0
+offset_right = 799.0
+offset_bottom = 408.0
+theme_override_font_sizes/font_size = 30
 text = "00:
 "
 
 [node name="Seconds" type="Label" parent="."]
-offset_left = 750.0
-offset_top = 358.0
-offset_right = 790.0
-offset_bottom = 381.0
+offset_left = 810.0
+offset_top = 366.0
+offset_right = 852.0
+offset_bottom = 408.0
+theme_override_font_sizes/font_size = 30
 text = "00:
+"
+
+[node name="Label" type="Label" parent="."]
+offset_left = 618.0
+offset_top = 357.0
+offset_right = 759.0
+offset_bottom = 413.0
+theme_override_font_sizes/font_size = 40
+text = "TIME:
 "
 
 [connection signal="pressed" from="VFlowContainer/Replay" to="." method="_on_replay_pressed"]

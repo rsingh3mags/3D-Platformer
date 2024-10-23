@@ -1,7 +1,8 @@
 extends Area3D
-#signals to global
+# signals to global
 signal coins_collected
 
+# set metadata for the coin
 func _ready():
 	set_meta("coin", 1)
 

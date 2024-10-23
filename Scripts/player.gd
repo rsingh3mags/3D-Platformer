@@ -1,73 +1,79 @@
 extends CharacterBody3D
+# classifying node as player
 class_name Player
+# constant for Acceleration
 const ACCELERATION = 300
+# constant for friction
 const FRICTION = 0.85
+# constant for jump velocity
 const JUMP_VELOCITY = 4
+# variable for jump velocity in air
 var JUMPVELOCITY_INAIR = 5
+# jump counter in air
 var jump_countair = 0
+# max jumps in air
 var max_jumpsair = 2
+# regular jump count
 var jump_count = 0
+# max jumps
 var max_jumps = 1
+# when player is alive
 var state = "alive"
-#var facing_right = false
+# variable for speed
 var speed = 1.5
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-	
+
+
 func _physics_process(delta):
+# when the player is alive do everything
 	if state == "alive":
-		#if player is on floor on not.
-		# Add the gravity
-		
+# if player is on the wall 
+# increase the players velocity
+# handles all animations 
+# handles players jumps 
+# handles players jumps in the air
+# how direction is defined
+# freezes player when they die
 		if is_on_wall():
 			JUMPVELOCITY_INAIR = 8
 			if velocity.y<=0:
 				$AuxScene/AnimationPlayer.play("HangingIdle")
 		else: 
 			JUMPVELOCITY_INAIR = 5
-		
-		
 		if not is_on_floor():
 			velocity.y -= gravity * delta
-		
-		#When player touches the floor all jump counters reset.
 		if is_on_floor():
 			jump_count = 0
 			jump_countair = 0
 			JUMPVELOCITY_INAIR = 5
-		
-		
-		# Get the input direction and handle the movement/deceleration.
 		var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 		var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 		
-		# how direction is defined
+		# how direction and changes 
 		if direction:
 			velocity.x = direction.x * ACCELERATION * delta
 			velocity.z = direction.z * ACCELERATION * delta
 		if input_dir.x>0:
+		# all player animations
+		# when the player collects a coins
 			$AuxScene/Node.rotation.y=0
 		elif input_dir.x<0:
 			$AuxScene/Node.rotation.y=PI
 		
 		if direction and is_on_floor():
 			$AuxScene/AnimationPlayer.play("Running(1)")
-		
-		
+			
 		elif abs(velocity.x) <= 2 and is_on_floor():
 			$AuxScene/AnimationPlayer.play("StandingW_BriefcaseIdle")
-		
-		
+	
 		if not is_on_floor() and not is_on_wall() and velocity.y<0.0001:
 			$AuxScene/AnimationPlayer.play("FallingIdle")
 		
-		
-		# Handle jump.
 		if Input.is_action_just_pressed("ui_accept") and jump_count < max_jumps:
 			velocity.y = JUMP_VELOCITY
 			jump_count += 1
 			$AuxScene/AnimationPlayer.play("RunningJump")
-		
 		
 		#player jump counter in air.
 		elif Input.is_action_just_pressed("ui_accept") and not is_on_floor() and jump_countair < max_jumpsair:
@@ -75,17 +81,17 @@ func _physics_process(delta):
 			jump_countair += 1
 			$AuxScene/AnimationPlayer.play("RunningJump")
 	
-	# for stoping player and causing decelration.
 		move_and_slide()
 		velocity.x *= FRICTION
 		velocity.z *= FRICTION
-
+		
+# function for pressing restart
 func _input(event):
 	if event.is_action_pressed("restart"):
 		get_tree().change_scene_to_file("res://scenes/level_1.tscn")
 		Global.coins_collected = 0
 
-	#when player is on wall the jumo velocity is slower than before.
+# when player is on wall the jumo velocity is slower than before.
 func check_jump():
 	if Input.is_action_just_pressed("ui_accept") and is_on_wall_only():
 		velocity = get_wall_normal() * JUMPVELOCITY_INAIR
@@ -93,7 +99,11 @@ func check_jump():
 		
 	#check Jump
 	check_jump()
-
+	
+# when the player collects the coins
+# respawns player
+# restarts timer
+# turns velocity to 0 so player freezes
 func _on_player_area_entered(area):
 	if area.has_meta("coin"):
 		jump_countair = 0
@@ -102,6 +112,7 @@ func _on_player_area_entered(area):
 		velocity.x = 0 
 		velocity.y = 0 
 		velocity.z = 0 
+		$AuxScene/AnimationPlayer.play("StandingW_BriefcaseIdle")
 		await get_tree().create_timer(2).timeout 
 		get_tree().change_scene_to_file("res://scenes/level_1.tscn")
 		Global.coins_collected = 0 
