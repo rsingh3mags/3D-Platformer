@@ -23,13 +23,16 @@ func _on_replay_pressed():
 	Global.seconds = 0
 	Global.msec = 0
 	Global.coins_collected = 0
-	
+
+
 # Function for fullscreening the game when player presses Fullscreen button.
 func _on_fullscreen_pressed():
 	if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 	elif DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_WINDOWED:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN )
+
+
 
 # Quit game when the player presses quit.
 func _on_quit_button_pressed():

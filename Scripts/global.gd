@@ -29,6 +29,7 @@ func _process(delta) -> void:
 		seconds = fmod(time, 60)
 		minutes = fmod(time, 3600) / 60
 
+
 # When a "escape" is pressed
 func _input(event):
 # return to main menu
@@ -37,9 +38,12 @@ func _input(event):
 # Reset time
 		reset_time()
 		game_start=false
+
 # When "r" is pressed (restart)
 	if event.is_action_pressed("restart"):
 		reset_time()
+
+
 # Reset time function 
 func reset_time():
 	time = 0.0
@@ -47,6 +51,7 @@ func reset_time():
 	seconds = 0
 	msec = 0
 	coins_collected = 0 
+
 
 # Saving best time function
 func save_score():
@@ -56,7 +61,8 @@ func save_score():
 		fastest_time = final_time
 	var file = FileAccess.open(save_path, FileAccess.WRITE)
 	file.store_var(fastest_time)
-	
+
+
 # Loading score function
 # Read the fastest time. 
 func load_score():

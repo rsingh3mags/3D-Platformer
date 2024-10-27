@@ -18,15 +18,17 @@ func _ready():
 	set_coins_label()
 	for coins in $Coins.get_children():
 		coins.coins_collected.connect(_on_coins_collected)
-		
+
 
 # When coins collected
 func _on_coins_collected():
 	set_coins_label() 
-	
+
+
 # When coin is collected put it on display
 func set_coins_label():
 	$HUD.coins(Global.coins_collected)
+
 
 # When player enters the foor it switches to the next scene
 func _on_door_player_entered(level):
